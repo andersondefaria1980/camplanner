@@ -24,7 +24,7 @@
 <br>
     <br>
     <br>
-    <form class="form-horizontal" action="/index.php">
+    <form class="form-horizontal" action="index.php">
         <div class="form-group">
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-default">Voltar</button>

@@ -17,7 +17,7 @@
     <hr>
 
     <br/ >
-    <form class="form-horizontal" action="/dimensionamento.php">
+    <form class="form-horizontal" action="dimensionamento.php">
         <div class="form-group">
             <label class="control-label col-sm-3" for="largura">Largura (metros):</label>
             <div class="col-sm-1">
