@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -19,7 +18,7 @@ function confirmInput() {
 </script>
 
 <?php
-
+  include("cameraservice.php");
 
   $largura = (empty($_POST['largura']))?"":$_POST["largura"];
   $comprimento = (empty($_POST['comprimento']))?"":$_POST["comprimento"];
@@ -41,20 +40,20 @@ function confirmInput() {
   $linhavirtual = (empty($_POST['linhavirtual']))?"":"checked";
   $abandonodeobjeto = (empty($_POST['abandonodeobjeto']))?"":"checked";
   $retiradadeobjeto = (empty($_POST['retiradadeobjeto']))?"":"checked";
+  $entradadealarme = (empty($_POST['entradadealarme']))?"":"checked";
+  $microfone = (empty($_POST['microfone']))?"":"checked";
 
   //print_r($_POST);
   ?>
 
 <div class="container">
-    <h2>CamPlanner</h2>
-    <h3>Dimensionamento de Projetos de Segurança</h3>
+    <h2>CamPlanner - Projetos de Segurança</h2>
+    <!--<h3>Dimensionamento de Projetos de Segurança</h3>-->
     <div class="form-group">
         <div class="col-sm-6">
             <span >Descubra qual o projeto de câmeras ideial para seu estabelecimento.</span>
         </div>
-        <div class="col-sm-6">
-            <span class="glyphicon glyphicon-question-sign">
-        </div>
+        
     </div>
     <br>
     <hr>
@@ -66,10 +65,11 @@ function confirmInput() {
             <div class="col-sm-1">
                 <input type="money" class="form-control number" id="largura" placeholder="0,00" name="largura" value="<?=$largura?>">
             </div>
-            <label class="control-label col-sm-2" for="largura">Comprimento (metros):</label>
+           <!-- <label class="control-label col-sm-2" for="largura">Comprimento (metros):</label>
             <div class="col-sm-1">
                 <input type="money" class="form-control number" id="comprimento" placeholder="0,00" name="comprimento" value="<?=$comprimento?>">
-            </div>
+            </div> --> 
+
             <label class="control-label col-sm-2" for="largura">Profundidade (metros):</label>
             <div class="col-sm-1">
                 <input type="money" class="form-control number" id="profundidade" placeholder="0,00" name="profundidade" value="<?=$profundidade?>">
@@ -97,6 +97,9 @@ function confirmInput() {
                 <div class="checkbox">
                     <label><input type="checkbox" name="reconhecimento" <?=$reconhecimento?>>Reconhecimento</label>
                 </div>
+            </div>
+            <div class="col-sm-1">
+               <span class="glyphicon glyphicon-question-sign">
             </div>
         </div>
 
@@ -162,7 +165,19 @@ function confirmInput() {
                 </div>
             </div>
         </div>
-        
+          <div class="form-group">
+            <label class="control-label col-sm-3" for="tipo"></label>
+            <div class="col-sm-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="entradadealarme" <?=$entradadealarme?>>Entrada de Alarme</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="microfone" <?=$microfone?>>Microfone</label>
+                </div>
+            </div>
+        </div>
 <br>
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-3"  >
@@ -177,10 +192,21 @@ function confirmInput() {
     </form>
     <hr>
 
-<?php if(!empty($_POST)){ ?>
+
+<?php if(!empty($_POST)){
+
+$service = new CameraService();
+$cameras = $service->getCameras();
+
+//print_r($cameras);
+
+ ?>
     <h3>Seu Projeto</h3>
     <br>
-    
+
+
+
+
         <div class="col-sm-12" style="text-align: center" >
             <img src="img/exemplo.jpg" width="800px" height="400px" id="imagemprojeto" value="bbbb">
         </div>
@@ -191,11 +217,11 @@ function confirmInput() {
           <hr>
         </div>
     
-<script>
-    //alert($("#largura").val());
-$("#largura").focus();
-$(document).scrollTop( $("#imagemprojeto").offset().top );
-</script>
+    <script>
+        //alert($("#largura").val());
+    $("#largura").focus();
+    $(document).scrollTop( $("#imagemprojeto").offset().top );
+    </script>
 
 <?php }//print_r($_POST);?>
 </div>
