@@ -2,27 +2,27 @@
 
  class CameraService{
 
-   public function getCameras(){
-        $cameras = [];
-        $c1 = ["modelo"=>"VIP100", "tipo"=>"Bullet"];
-        $c2 = ["modelo"=>"VIPSE10", "tipo"=>"Speed Dome"];
-        $cameras[]=$c1;
-        $cameras[]=$c2;
+   public function getCameras($caracteristicas = []){
 
-        //$this->getCamerasDB();
-        return $cameras;
+        return $this->getCamerasDB($caracteristicas);;
     }
 
-    function getCamerasDB(){
+    function getCamerasDB($caracteristicas){
+
         echo "-----------------";
         $dir = 'sqlite:camplanner.db';
-$dbh  = new PDO($dir) or die("cannot open the database");
-$query =  "SELECT * FROM cameras WHERE 1=1";
-foreach ($dbh->query($query) as $row)
-{
-    print_r($row);
-}
-$dbh = null;
+        $dbh  = new PDO($dir) or die("cannot open the database");
+        $query =  "SELECT * FROM cameras WHERE 1=1";
+        foreach ($caracteristicas as $c => $a){
+            if(!empty($a)) $query .= " AND ($c = $a)";
+        }
+        $cameras = [];
+        foreach ($dbh->query($query) as $row)
+        {
+            $cameras[] = $row;
+        }
+        $dbh = null;
+        return $cameras;
     }
 
 }

@@ -196,18 +196,32 @@ function confirmInput() {
 <?php if(!empty($_POST)){
 
 $caracteristicas=[];
-    
+$caracteristicas["ip"] = (empty($_POST['ip']))?0:1;
+$caracteristicas["analogica"] = (empty($_POST['analogica']))?0:1;
+$caracteristicas["deteccaodemovimento"] = (empty($_POST['deteccaodemovimento']))?0:1;
+$caracteristicas["deteccaodeface"] = (empty($_POST['deteccaodeface']))?0:1;
+$caracteristicas["reconhecimentofacial"] = (empty($_POST['reconhecimentofacial']))?0:1;
+$caracteristicas["reconhecimentodeplaca"] = (empty($_POST['reconhecimentodeplaca']))?0:1;
+$caracteristicas["cercavirtual"] = (empty($_POST['cercavirtual']))?0:1;
+$caracteristicas["linhavirtual"] = (empty($_POST['linhavirtual']))?0:1;
+$caracteristicas["abandonodeobjeto"] = (empty($_POST['abandonodeobjeto']))?0:1;
+$caracteristicas["retiradadeobjeto"] = (empty($_POST['retiradadeobjeto']))?0:1;
+$caracteristicas["entradadealarme"] = (empty($_POST['entradadealarme']))?0:1;
+$caracteristicas["microfone"] = (empty($_POST['microfone']))?0:1;
+
 
 $service = new CameraService();
-$cameras = $service->getCameras();
-
-//print_r($cameras);
-
+$cameras = $service->getCameras($caracteristicas);
  ?>
     <h3>Seu Projeto</h3>
     <br>
 
+<?php
 
+foreach ($cameras as $c){
+    echo $c["modelo"] . " ........ ";
+}
+?>
 
 
         <div class="col-sm-12" style="text-align: center" >
