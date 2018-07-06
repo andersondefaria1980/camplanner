@@ -195,6 +195,9 @@ function confirmInput() {
 
 <?php if(!empty($_POST)){
 
+$caracteristicas=[];
+    
+
 $service = new CameraService();
 $cameras = $service->getCameras();
 
