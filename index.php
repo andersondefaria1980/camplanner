@@ -13,8 +13,7 @@
 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
-<nav class="navbar navbar-default navbar-fixed-top">
+<div  class="titulo">
   <div class="container">
     <h2>CamPlanner - Projetos de Segurança</h2>
     <!--<h3>Dimensionamento de Projetos de Segurança</h3>-->
@@ -24,10 +23,7 @@
         <span style="float: right; font-style: italic;">Versão 1.0.2 - 08/07/2018</span>
     </div>   
   </div>
-</nav>
-
-
-
+</div>
 
 <?php
   include("cameraservice.php");
@@ -62,7 +58,7 @@
   //print_r($_POST);
   ?>
 
-<div class="jumbotron">
+<div class="container" style="padding-top: 15px">
     
     <form class="form-horizontal" id="formprincipal" action="index.php" method="post">
         <div class="form-group">
@@ -185,7 +181,7 @@
                 </div>
             </div>
         </div>
-<br>
+        <br>
         <div class="form-group">
             <div class="col-sm-offset-1 col-sm-3"  >
                 <a href="index.php">
@@ -200,7 +196,7 @@
         <input type="hidden" id="cameraselecionadanome" name="cameraselecionadanome" value="<?=$cameraselecionadanome?>">
 
     </form>
-    <hr>
+    </div>
 
 
 <?php if(!empty($_POST)){
@@ -233,47 +229,52 @@
     $cameras = $service->getCameras($caracteristicas, $graureconhecimento, $largura, $profundidade);
 
      ?>
-    <h3>Seu Projeto</h3>
-    <br>
+      <div class="titulo">
+            <div class="container">
+                <h3>Seu Projeto</h3>
+            </div>
+         </div>
+     <div class="container" style="padding-top: 15px">
 
+        
 
-
-    <div class="row">
-        <div class="col-sm-2"   ">
-            <div class="row" style="height: 30px;font-weight: bold">Câmeras Encontradas</div>
-            <?php foreach ($cameras as $c){ ?>
-                    <div class="row">
-                        <span class="camera <?=($cameraselecionada==$c["id"])?"negrito":""?>" nomecamera="<?php echo $c["modelo"]. " / ". $c["tipo"]?>" id="camera_<?=$c["id"]?>" value="<?=$c["id"]?>">
-                            <?php echo " - ".$c["modelo"]. " / " . $c["tipo"];?>
-                        </span>
+        <div class="row">
+            <div class="col-sm-2"   ">
+                <div class="row" style="height: 30px;font-weight: bold">Câmeras Encontradas</div>
+                <?php foreach ($cameras as $c){ ?>
+                        <div class="row">
+                            <span class="camera <?=($cameraselecionada==$c["id"])?"negrito":""?>" nomecamera="<?php echo $c["modelo"]. " / ". $c["tipo"]?>" id="camera_<?=$c["id"]?>" value="<?=$c["id"]?>">
+                                <?php echo " - ".$c["modelo"]. " / " . $c["tipo"];?>
+                            </span>
+                        </div>
+                <?php } ?>
+            </div>
+            <div class="col-sm-10" >
+                <?php if (!empty($cameraselecionada)){ ?>
+                    <!--<div class="row" style="height: 30px;font-weight: bold;"> - <?php echo $cameraselecionadanome; ?></div>-->
+                    <div class="row imagemprojeto">
+                        <img src="img/exemplo.jpg" width="600px" height="300px" id="imagemprojeto" value="bbbb">
                     </div>
-            <?php } ?>
+               <?php } else { 
+                        if (count($cameras) > 0){ ?>
+                            <div class="row imagemprojeto" id="imagemprojeto">Selecione uma câmera para visualizar o projeto.</div>
+                        <?php }else{ ?>
+                            <div class="row imagemprojeto" id="imagemprojeto">Não encontramos nenhuma câmera com a combinação de características selecionadas.</div>
+                        <?php } ?>    
+               <?php }?>
+            </div>
         </div>
-        <div class="col-sm-10" >
-            <?php if (!empty($cameraselecionada)){ ?>
-                <!--<div class="row" style="height: 30px;font-weight: bold;"> - <?php echo $cameraselecionadanome; ?></div>-->
-                <div class="row imagemprojeto">
-                    <img src="img/exemplo.jpg" width="600px" height="300px" id="imagemprojeto" value="bbbb">
-                </div>
-           <?php } else { 
-                    if (count($cameras) > 0){ ?>
-                        <div class="row imagemprojeto" id="imagemprojeto">Selecione uma câmera para visualizar o projeto.</div>
-                    <?php }else{ ?>
-                        <div class="row imagemprojeto" id="imagemprojeto">Não encontramos nenhuma câmera com a combinação de características selecionadas.</div>
-                    <?php } ?>    
-           <?php }?>
-        </div>
+        
+
+        <script>
+            //alert($("#largura").val());
+        $("#largura").focus();
+        $(document).scrollTop( $("#imagemprojeto").offset().top );
+        </script>
+
     </div>
-    
-
-    <script>
-        //alert($("#largura").val());
-    $("#largura").focus();
-    $(document).scrollTop( $("#imagemprojeto").offset().top );
-    </script>
-
 <?php }//print_r($_POST);?>
-</div>
+
 
 </body>
 </html>
