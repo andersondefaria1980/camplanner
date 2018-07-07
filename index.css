@@ -1,0 +1,25 @@
+<style>
+.aaa{
+	cursor:pointer;
+}
+
+body{
+}
+
+.camera{ 
+    cursor: pointer;
+}
+.negrito{
+    font-weight: bold;
+}
+
+.jumbotron {
+      padding: 110px 25px;
+      background-color: white;
+ }
+
+ .imagemprojeto{
+ 	height: 300px;
+ }
+
+</style>
