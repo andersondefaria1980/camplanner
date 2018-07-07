@@ -4,6 +4,7 @@
 }
 
 body{
+	/* background-color: #f8f8f8;*/
 }
 
 .camera{ 
@@ -23,7 +24,7 @@ body{
  }
 
  .titulo{
- 	background-color: #f8f8f8;
+ 	background-color: #FFFFFF;
  	border: 1px solid #e7e7e7;
  }
 

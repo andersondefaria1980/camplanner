@@ -15,12 +15,18 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 <div  class="titulo">
   <div class="container">
-    <h2>CamPlanner - Projetos de Segurança</h2>
-    <!--<h3>Dimensionamento de Projetos de Segurança</h3>-->
-
     <div class="form-group">
-        <span >Descubra qual o projeto de câmeras ideial para seu estabelecimento.</span>
-        <span style="float: right; font-style: italic;">Versão 1.0.2 - 08/07/2018</span>
+        <div class="col-sm-4"> 
+            <img src="img/logo.jpeg" alt="Smiley face" width="340" height="80">
+        </div>
+        <div class="col-sm-6">
+            <h2>Projetos de Segurança</h2>
+            <!--<h3>Dimensionamento de Projetos de Segurança</h3>-->
+        </div>
+    </div>
+    <div class="form-group">
+        <span class="col-sm-6"style="float: center;">Descubra qual o projeto de câmeras ideial para seu estabelecimento.</span>
+        <span class="col-sm-2"style="float: right; font-style: italic;">Versão 1.0.2</span>
     </div>   
   </div>
 </div>
@@ -36,6 +42,8 @@
   $classificacao = (empty($_POST['classificacao']))?"":"checked";
   $identificacao = (empty($_POST['identificacao']))?"":"checked";
   $reconhecimento = (empty($_POST['reconhecimento']))?"":"checked";
+  $distancia = (empty($_POST['distancia']))?"":$_POST["distancua"];
+
 
   $ip = (empty($_POST['ip']))?"":"checked";
   $analogica = (empty($_POST['analogica']))?"":"checked";
@@ -81,7 +89,7 @@
             
             <label class="control-label col-sm-2 " for="grau-reconhecimento" >Grau de Reconhecimento:</label>
             
-            <span data-toggle="tooltip" title="Explicação sobre DCRI..." class="glyphicon glyphicon-question-sign" alt="asdfsa" ></span>
+            <!--<span data-toggle="tooltip" title="DCRI" class="glyphicon glyphicon-question-sign" alt="asdfsa" ></span>-->
             
             <div class="col-sm-2">
                 <div class="checkbox">
@@ -93,20 +101,47 @@
                     <label><input type="checkbox" name="classificacao" <?=$classificacao?>>Classificação</label>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="identificacao" <?=$identificacao?>>Identificação</label>
-                </div>
-            </div>
+            
             <div class="col-sm-2">
                 <div class="checkbox">
                     <label><input type="checkbox" name="reconhecimento" <?=$reconhecimento?>>Reconhecimento</label>
                 </div>
             </div>
+            <div class="col-sm-2">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="identificacao" <?=$identificacao?>>Identificação</label>
+                </div>
+            </div>
             
         </div>
 
+        <div class="form-group">
+            
+            <label class="control-label col-sm-2" for="distancia-grau-reconhecimento" >Distância Grau de Reconhecimento:</label>
+            
 
+            <div class="col-sm-1">
+                <input type="text" maxlength="5" class="form-control number" id="distancia" placeholder="0,00" name="largura" value="<?=$distancia?>">
+            </div>
+
+            <div class="col-sm-1">
+              <a href="#demo" class="btn btn-info btn-sm" data-toggle="collapse">?</a>
+            </div>
+
+            <div class="col-sm-8">
+              <div id="demo" class="collapse justify">
+
+                <b>DCRI:</b> 
+                    <br/><b> - Detecção: </b> é tudo que é possível ver na imagem.
+
+                    <br/><b> - Classificação: </b> é quando é possível distinguir entre humano, animal e objeto o que está na imagem. 
+
+                    <br/><b> - Reconhecimento: </b> é quando é possível identificar cores/tipos de vestimentas e se existe algum objeto com a pessoa. Nesse grau é possível reconhecer a pessoa se você já conhece ela.
+
+                    <br/><b> - Identificação: </b> é quando você consegue visualizar claramente o rosto da pessoa a ponto de lembrar caso não a conheça a pessoa.
+              </div>
+            </div>
+        </div>
       
         <div class="form-group">
             <label class="control-label col-sm-2" for="tipo">Tipo de Câmera:</label>
@@ -220,6 +255,7 @@
     $graureconhecimento["classificacao"] = (empty($_POST['classificacao']))?0:1;
     $graureconhecimento["identificacao"] = (empty($_POST['identificacao']))?0:1;
     $graureconhecimento["reconhecimento"] = (empty($_POST['reconhecimento']))?0:1;
+    $graureconhecimento["distancia"] = (empty($_POST['distancia']))?"":$_POST['distancia'];
 
     $largura = $_POST['largura'];
     $profundidade = $_POST['profundidade'];
