@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
         <span class="col-sm-6"style="float: center;">Descubra qual o projeto de câmeras ideial para seu estabelecimento.</span>
-        <span class="col-sm-2"style="float: right; font-style: italic;">Versão 1.0.2</span>
+        <span class="col-sm-2"style="float: right; font-style: italic;">Versão 1.0.3</span>
     </div>   
   </div>
 </div>
