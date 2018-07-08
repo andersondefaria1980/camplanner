@@ -38,26 +38,26 @@ function draw() {
   ctx.strokeRect(x, y , larg*10, prof*10);
 
 
-  //Cálculo distância da câmera para IDENTIFICAÇÃO
+  //Cálculos gerais
   var b = lente/sensor;
-  var largObj = (resolucao/(300*percentI));
-  var distT = (largObj*b*0.7); //cateto Oposto de B e adjacente de A
-  var distTOK = parseFloat(distT.toFixed(2));
-
   var angb = 180 - 90 - (ang/2); //angulo B
   var angOK = parseFloat(angb.toFixed(2));
 
-  var hipB = distTOK/(Math.sin(angOK)); //hipotenusa é a distancia entre o (x0,y0) e (x,y)
-  var catOpostoA = Math.sqrt((Math.pow(hipB, 2))-(Math.pow(distTOK, 2))); //achando o cateto Adjacente de B / catOposto de A
-  var catOpOK = parseFloat(catOpostoA.toFixed(2));
+  //Cálculo distância da câmera para IDENTIFICAÇÃO
+  var largObj = (resolucao/(300*percentI));
+  var distT = (largObj*b*0.7); //cateto adjacente de A
+  var catAdjA_I = parseFloat(distT.toFixed(2)); 
+  var hipB = catAdjA_I/(Math.sin(angOK)); //hipotenusa é a distancia entre o (x0,y0) e (x,y)
+  var catOpostoA_I = Math.sqrt((Math.pow(hipB, 2))-(Math.pow(catAdjA_I, 2))); //achando o cateto oposto A
+  var catOpOK = parseFloat(catOpostoA_I.toFixed(2));
 
 
   //TRIANGULO IDENTIFICAÇÃO
   ctx.fillStyle = "rgba(255,0,0,0.5)"
   ctx.beginPath();
   ctx.moveTo(x+10,y+10);  
-  ctx.lineTo(catOpOK+x+10, distTOK+10+y);
-  ctx.lineTo(distTOK+y+10, catOpOK+x+10);
+  ctx.lineTo(catOpOK+x+10, catAdjA_I+10+y);
+  ctx.lineTo(catAdjA_I+y+10, catOpOK+x+10);
   ctx.fill();
 
 
