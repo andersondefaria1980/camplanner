@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="index.js"></script>
+    <script src="criaProj.js"></script>
 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -42,7 +43,7 @@
   $classificacao = (empty($_POST['classificacao']))?"":"checked";
   $identificacao = (empty($_POST['identificacao']))?"":"checked";
   $reconhecimento = (empty($_POST['reconhecimento']))?"":"checked";
-  $distancia = (empty($_POST['distancia']))?"":$_POST["distancua"];
+  $distancia = (empty($_POST['distancia']))?"":$_POST["distancia"];
 
 
   $ip = (empty($_POST['ip']))?"":"checked";
@@ -63,7 +64,7 @@
 //echo "camera selecionada: [" . $cameraselecionada . "]";
   $cameraselecionadanome = (empty($_POST['cameraselecionadanome']))?"":$_POST["cameraselecionadanome"];
 
-  //print_r($_POST);
+ // print_r($_POST);
   ?>
 
 <div class="container" style="padding-top: 15px">
@@ -79,7 +80,7 @@
                 <input type="money" class="form-control number" id="comprimento" placeholder="0,00" name="comprimento" value="<?=$comprimento?>">
             </div> --> 
 
-            <label class="control-label col-sm-2" for="largura">Profundidade (metros):</label>
+            <label class="control-label col-sm-2" for="profundidade">Profundidade (metros):</label>
             <div class="col-sm-1">
                 <input type="text" maxlength="5" class="form-control number" id="profundidade" placeholder="0,00" name="profundidade" value="<?=$profundidade?>">
             </div>
@@ -121,7 +122,7 @@
             
 
             <div class="col-sm-1">
-                <input type="text" maxlength="5" class="form-control number" id="distancia" placeholder="0,00" name="largura" value="<?=$distancia?>">
+                <input type="text" maxlength="5" class="form-control number" id="distancia" placeholder="0,00" name="distancia" value="<?=$distancia?>">
             </div>
 
             <div class="col-sm-1">
@@ -257,15 +258,15 @@
     $graureconhecimento["reconhecimento"] = (empty($_POST['reconhecimento']))?0:1;
     $graureconhecimento["distancia"] = (empty($_POST['distancia']))?"":$_POST['distancia'];
 
-    $largura = $_POST['largura'];
-    $profundidade = $_POST['profundidade'];
+    //$largura = $_POST['largura'];
+    //$profundidade = $_POST['profundidade'];
 
 
     $service = new CameraService();
     $cameras = $service->getCameras($caracteristicas, $graureconhecimento, $largura, $profundidade);
 
      ?>
-      <div class="titulo">
+      <div class="titulo" id="seuprojeto">
             <div class="container">
                 <h3>Seu Projeto</h3>
             </div>
@@ -279,33 +280,36 @@
                 <div class="row" style="height: 30px;font-weight: bold">Câmeras Encontradas</div>
                 <?php foreach ($cameras as $c){ ?>
                         <div class="row">
-                            <span class="camera <?=($cameraselecionada==$c["id"])?"negrito":""?>" nomecamera="<?php echo $c["modelo"]. " / ". $c["tipo"]?>" id="camera_<?=$c["id"]?>" value="<?=$c["id"]?>">
+                            <span class="camera <?=($cameraselecionada==$c["id"])?"negrito":""?>" 
+                                  nomecamera="<?php echo $c["modelo"]. " / ". $c["tipo"]?>" 
+                                  id="camera_<?=$c["id"]?>" 
+                                  value="<?=$c["id"]?>"
+                                  resolucao="<?=$c["resolucaomaxima"]?>"
+                                  lente="<?=$c["lente"]?>"
+                                  sensor="<?=$c["sensor"]?>"
+                                  angulo="<?=$c["angulo"]?>"
+                            >
                                 <?php echo " - ".$c["modelo"]. " / " . $c["tipo"];?>
                             </span>
                         </div>
                 <?php } ?>
             </div>
-            <div class="col-sm-10" >
-                <?php if (!empty($cameraselecionada)){ ?>
-                    <!--<div class="row" style="height: 30px;font-weight: bold;"> - <?php echo $cameraselecionadanome; ?></div>-->
-                    <div class="row imagemprojeto">
-                        <img src="img/exemplo.jpg" width="600px" height="300px" id="imagemprojeto" value="bbbb">
-                    </div>
-               <?php } else { 
-                        if (count($cameras) > 0){ ?>
-                            <div class="row imagemprojeto" id="imagemprojeto">Selecione uma câmera para visualizar o projeto.</div>
-                        <?php }else{ ?>
-                            <div class="row imagemprojeto" id="imagemprojeto">Não encontramos nenhuma câmera com a combinação de características selecionadas.</div>
-                        <?php } ?>    
-               <?php }?>
+            <div class="col-sm-10" >    
+                <div class="row imagemprojeto" id="imagemprojeto">
+                    <?php if (count($cameras) > 0){ ?>        
+                        Selecione uma câmera para visualizar o projeto.
+                    <?php }else{ ?>
+                        Não encontramos nenhuma câmera com a combinação de características selecionadas.
+                    <?php } ?>           
+                </div>
+                <canvas id="canvas" width="1000" height="1000"></canvas>
+                <br><br><br>
             </div>
         </div>
         
 
         <script>
-            //alert($("#largura").val());
-        $("#largura").focus();
-        $(document).scrollTop( $("#imagemprojeto").offset().top );
+            $(document).scrollTop( $("#seuprojeto").offset().top );
         </script>
 
     </div>

@@ -6,18 +6,43 @@ $(function() {
 
   $('#largura').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   $('#profundidade').maskMoney({ decimal: ',', thousands: '', precision: 2 });
+  $('#distancia').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   
   $('.camera').click(function(){
     $('#cameraselecionada').val($(this).attr("value"));
     $('#cameraselecionadanome').val($(this).attr("nomecamera"));
 
-    $('#formprincipal').submit();
+    //$(this).addClass("negrito");
+    selecionarCamera($(this));
+    var largura = Number($('#largura').val().replace(",",".")); 
+    var profundidade = Number($('#profundidade').val().replace(",",".")); 
+    var distancia = Number($('#distancia').val().replace(",",".")); 
+
+    var resolucao = Number($(this).attr("resolucao").replace(",",".")); 
+    var lente = Number($(this).attr("lente").replace(",",".")); 
+    var sensor = Number($(this).attr("sensor").replace(",",".")); 
+    var angulo = Number($(this).attr("angulo").replace(",",".")); 
+
+
+    draw(largura, profundidade, distancia, resolucao, lente, sensor, angulo);
+    
+    //$('#formprincipal').submit();
+
   });
 
   $('#dimensionar').click(function(){
   	$('#cameraselecionada').val("");
   });
 
-  $('[data-toggle="tooltip"]').tooltip();   
+  $('[data-toggle="tooltip"]').tooltip();  
 
-})
+  function selecionarCamera(element){
+    $( ".camera" ).each(function( index ) {
+      //console.log( index + ": " + $( this ).text() );
+      $(this).removeClass("negrito");
+    });
+    element.addClass("negrito");
+    $('#imagemprojeto').hide();
+  }
+});
+

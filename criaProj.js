@@ -1,4 +1,4 @@
-function draw() {
+function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.36, sensor=0.25, angulo=80.36) {
   var canvas = document.getElementById("canvas");
 
   //EventListener do click do mouse
@@ -10,6 +10,7 @@ function draw() {
   //COORDENADAS PONTA ESQUERDA SUPERIOR ÁREA
   var x = 30;
   var y = 30; 
+
   var cordAx = 200;
   var cordAy = 300;
   var cordBx = 300;
@@ -21,15 +22,15 @@ function draw() {
   var percentI = 0.76;
   
   //informação que o usuário irá inserir
-  var larg = 30;
-  var prof = 30;
-  var dist = 0; 
+  var larg = largura;
+  var prof = profundidade;
+  var dist = distancia; 
 
   //informações que será pego do BD
-  var resolucao = 1280;
-  var lente = 0.36;
-  var sensor = 0.25;
-  var ang = 80.36
+  var resolucao = resolucao; //1280;
+  var lente = lente; //0.36;
+  var sensor = sensor; //0.25;
+  var ang = angulo; //80.36
 
 
   //Criando a planta - quadrado ou retangulo
