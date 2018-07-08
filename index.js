@@ -4,6 +4,16 @@ function confirmInput() {
 } 
 $(function() {
 
+  $('#formprincipal').submit(function(){
+    if (Number($('#largura').val().replace(",",".")) <= 0 || 
+        Number($('#profundidade').val().replace(",",".")) <= 0 || 
+        Number($('#distancia').val().replace(",",".")) <= 0){
+      alert("Os campos Largura, Profundidade e Distância do Grau de Reconhecimento são obrigatórios. Preencha os campos e tente novamente por favor.");
+      return false;
+    }
+    return true;
+  });
+
   $('#largura').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   $('#profundidade').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   $('#distancia').maskMoney({ decimal: ',', thousands: '', precision: 2 });

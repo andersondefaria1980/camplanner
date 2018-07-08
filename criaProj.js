@@ -66,7 +66,7 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
 
   //ADICIONANDO O QUE É LARGURA E O QUE É PROFUNDIDADE
   ctx.fillStyle = "rgba(0,0,0,0.5)"
-  ctx.font = "bold 10px Time New Roman";
+  ctx.font = "bold 10px "Helvetica,Arial,sans-serif";
   ctx.fillText("Largura", 30, 28);
   ctx.fillText(larg +"m", ((larg*10)+x)/2, y-3);
   ctx.fillText("P",21,40)
@@ -81,7 +81,7 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
   ctx.fillText("a",21,112)
   ctx.fillText("d",21,120)
   ctx.fillText("e",21,128)   
-  ctx.fillText(y+"m", larg*10+x+5, ((prof*10)+y)/2);
+  ctx.fillText(prof+"m", larg*10+x+5, ((prof*10)+y)/2);
 
   //adicionando o icon de camera
   function desenhaImagem(){

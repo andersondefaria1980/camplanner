@@ -130,7 +130,7 @@
             </div>
 
             <div class="col-sm-8">
-              <div id="demo" class="collapse justify">
+              <div id="demo" class="collapse justify explicacao">
 
                 <b>DCRI:</b> 
                     <br/><b> - Detecção: </b> é tudo que é possível ver na imagem.
