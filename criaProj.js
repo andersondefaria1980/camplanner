@@ -8,14 +8,14 @@ function draw() {
   var imgCam = new Image();
 
   //COORDENADAS PONTA ESQUERDA SUPERIOR ÁREA
-  var x = 30;
-  var y = 30; 
+  var x = 100;
+  var y = 100; 
   var cordAx = 200;
   var cordAy = 300;
   var cordBx = 300;
   var cordBy = 200;
 
-  var percentD = 0.01;
+  var percentD = 0.05;
   var percentC = 0.26;
   var percentR = 0.51;
   var percentI = 0.76;
@@ -29,7 +29,12 @@ function draw() {
   var resolucao = 1280;
   var lente = 0.36;
   var sensor = 0.25;
-  var ang = 80.36
+  var ang = 80;
+
+  //borda canvas
+  ctx.strokeStyle = "rgba(0,0,0)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(0,0, 1000, 1000);
 
   //Criando a planta - quadrado ou retangulo
   ctx.strokeStyle = "rgba(0,0,0)";
@@ -38,79 +43,104 @@ function draw() {
 
   //Cálculos gerais
   var b = lente/sensor;
-  var angb = 180 - 90 - (ang/2); //angulo B
-  var angOK = parseFloat(angb.toFixed(2));
+
+  //ADICIONAR AQUI O CÁLCULO DE TODAS AS CÂMERAS EM REFERÊNCIA 
+  //A DISTÂNCIA QUE O USUÁRIO QUER VISUALIZAR
+
+
+
+  //*************************************************
   
   function trianguloD(){
-    //Cálculo distância da câmera para DETECÇÃO
-    var largObj = (resolucao/(300*percentD));
-    var distT = (largObj*b*0.7); //cateto adjacente de A
-    var catAdjA_D = parseFloat(distT.toFixed(2)); 
-    var hipB = catAdjA_D/(Math.sin(angOK)); //hipotenusa é a distancia entre o (x0,y0) e (x,y)
-    var catOpostoA_D = Math.sqrt((Math.pow(hipB, 2))-(Math.pow(catAdjA_D, 2))); //achando o cateto oposto A
-    var catOpOK = parseFloat(catOpostoA_D.toFixed(2));
+    //Cálculo distância da câmera para IDENTIFICAÇÃO
+    var largObjD = (resolucao/(300*percentD));
+    var distTD = (largObjD*b*0.7); 
+    var catAdjA_ID = parseFloat(distTD.toFixed(2)) *10; //cateto adjacente de A
 
-    //TRIANGULO DETECÇÃO
-    ctx.fillStyle = "rgba(0,0,255,0.5)"
+    //TRABALHANDO A VARIAÇÃO ANGULAR
+    var varAngularD = (45 - ang/2)/45;
+    var varAngularFinalD = (catAdjA_ID*varAngularD)/2;
+
+    //TRIANGULO IDENTIFICAÇÃO
+    ctx.fillStyle = "rgba(0, 0,255,0.5)"
     ctx.beginPath();
-    ctx.moveTo(x+10,y+10);  
-    ctx.lineTo((catOpOK*10)+x+10, (catAdjA_D*10)+y+10);
-    ctx.lineTo((catAdjA_D*10)+y+10, (catOpOK*10)+x+10);
+    ctx.moveTo(x,y);
+    //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
+    //de um lado e aumenta do outro
+    ctx.lineTo(x+varAngularFinalD, y+catAdjA_ID - varAngularFinalD);
+    //parte de cima (tamanho, angulação)
+    ctx.lineTo(x+catAdjA_ID - varAngularFinalD, y+varAngularFinalD);
     ctx.fill();
-  } 
+
+  }
 
   function trianguloC(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
-    var largObj = (resolucao/(300*percentC));
-    var distT = (largObj*b*0.7); //cateto adjacente de A
-    var catAdjA_C = parseFloat(distT.toFixed(2)); 
-    var hipB = catAdjA_C/(Math.sin(angOK)); //hipotenusa é a distancia entre o (x0,y0) e (x,y)
-    var catOpostoA_C = Math.sqrt((Math.pow(hipB, 2))-(Math.pow(catAdjA_C, 2))); //achando o cateto oposto A
-    var catOpOK = parseFloat(catOpostoA_C.toFixed(2));
+    var largObjC = (resolucao/(300*percentC));
+    var distTC = (largObjC*b*0.7); 
+    var catAdjA_C = parseFloat(distTC.toFixed(2)) *10; //cateto adjacente de A
+
+    //TRABALHANDO A VARIAÇÃO ANGULAR
+    var varAngularC = (45 - ang/2)/45;
+    var varAngularFinalC = (catAdjA_C*varAngularC)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
     ctx.fillStyle = "rgba(0,255,0,0.5)"
     ctx.beginPath();
-    ctx.moveTo(x+10,y+10);  
-    ctx.lineTo((catOpOK*10)+x+10, (catAdjA_C*10)+y+10);
-    ctx.lineTo((catAdjA_C*10)+y+10, (catOpOK*10)+x+10);
+    ctx.moveTo(x,y);
+    //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
+    //de um lado e aumenta do outro
+    ctx.lineTo(x+varAngularFinalC, y+catAdjA_C - varAngularFinalC);
+    //parte de cima (tamanho, angulação)
+    ctx.lineTo(x+catAdjA_C - varAngularFinalC, y+varAngularFinalC);
     ctx.fill();
+
   }
 
   function trianguloR(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
-    var largObj = (resolucao/(300*percentR));
-    var distT = (largObj*b*0.7); //cateto adjacente de A
-    var catAdjA_R = parseFloat(distT.toFixed(2)); 
-    var hipB = catAdjA_R/(Math.sin(angOK)); //hipotenusa é a distancia entre o (x0,y0) e (x,y)
-    var catOpostoA_R = Math.sqrt((Math.pow(hipB, 2))-(Math.pow(catAdjA_R, 2))); //achando o cateto oposto A
-    var catOpOK = parseFloat(catOpostoA_R.toFixed(2));
+    var largObjR = (resolucao/(300*percentR));
+    var distTR = (largObjR*b*0.7); 
+    var catAdjA_R = parseFloat(distTR.toFixed(2)) *10; //cateto adjacente de A
+
+    //TRABALHANDO A VARIAÇÃO ANGULAR
+    var varAngularR = (45 - ang/2)/45;
+    var varAngularFinalR = (catAdjA_R*varAngularR)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "rgba(255,255,0,0.5)"
+    ctx.fillStyle = "rgba(255,255,0,1)"
     ctx.beginPath();
-    ctx.moveTo(x+10,y+10);  
-    ctx.lineTo((catOpOK*10)+x+10, (catAdjA_R*10)+y+10);
-    ctx.lineTo((catAdjA_R*10)+y+10, (catOpOK*10)+x+10);
+    ctx.moveTo(x,y);
+    //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
+    //de um lado e aumenta do outro
+    ctx.lineTo(x+varAngularFinalR, y+catAdjA_R - varAngularFinalR);
+    //parte de cima (tamanho, angulação)
+    ctx.lineTo(x+catAdjA_R - varAngularFinalR, y+varAngularFinalR);
     ctx.fill();
+
   }
 
   function trianguloI(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
     var largObj = (resolucao/(300*percentI));
-    var distT = (largObj*b*0.7); //cateto adjacente de A
-    var catAdjA_I = parseFloat(distT.toFixed(2)); 
-    var hipB = catAdjA_I/(Math.sin(angOK)); //hipotenusa é a distancia entre o (x0,y0) e (x,y)
-    var catOpostoA_I = Math.sqrt((Math.pow(hipB, 2))-(Math.pow(catAdjA_I, 2))); //achando o cateto oposto A
-    var catOpOK = parseFloat(catOpostoA_I.toFixed(2));
+    var distT = (largObj*b*0.7); 
+    var catAdjA_I = parseFloat(distT.toFixed(2)) *10; //cateto adjacente de A
+
+    //TRABALHANDO A VARIAÇÃO ANGULAR
+    var varAngular = (45 - ang/2)/45;
+    var varAngularFinal = (catAdjA_I*varAngular)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "rgba(255,0,0,0.5)"
+    ctx.fillStyle = "rgba(255,0,0,1)"
     ctx.beginPath();
-    ctx.moveTo(x+10,y+10);  
-    ctx.lineTo((catOpOK*10)+x+10, (catAdjA_I*10)+y+10);
-    ctx.lineTo((catAdjA_I*10)+y+10, (catOpOK*10)+x+10);
+    ctx.moveTo(x,y);
+    //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
+    //de um lado e aumenta do outro
+    ctx.lineTo(x+varAngularFinal, y+catAdjA_I - varAngularFinal);
+    //parte de cima (tamanho, angulação)
+    ctx.lineTo(x+catAdjA_I - varAngularFinal, y+varAngularFinal);
     ctx.fill();
+
   }
 
   function medidas(){
@@ -147,13 +177,14 @@ function draw() {
     cx = event.pageX;
     cy = event.pageY;
 
-  //removendo triângulo
+    //removendo triângulo
     for (var i = 0; i < 5; i++) {
       ctx.fillStyle = "rgba(255,255,255, 1)";
-      ctx.fillRect(0,0, 500, 500);
+      ctx.fillRect(0,0, 1000,1000);
 
       ctx.strokeStyle = "rgba(0,0,0)";
       ctx.lineWidth = 1;
+      ctx.strokeRect(0,0,1000,1000);
       ctx.strokeRect(x, y , larg*10, prof*10);
 
       ctx.fillStyle = "rgba(0,0,0,0.5)"
@@ -177,18 +208,18 @@ function draw() {
 
     desenhaImagem();
 
-  //MUDANDO A POSIÇÃO DO TRIÂNGULO CONFORME O CLICK
+    //MUDANDO A POSIÇÃO DO TRIÂNGULO CONFORME O CLICK
     ctx.fillStyle = "rgba(255,0,0,0.5)"
     ctx.beginPath();
-    ctx.moveTo(x+10,y+10);  
-    ctx.lineTo(cx-10,cy-10);
-    ctx.lineTo(cx+(cordBx - cordAx), cy-(cordAy - cordBy));
+    ctx.moveTo(x+10,y+10);
+    ctx.lineTo(cx, cy-25);
+    ctx.lineTo(cy-25, cx);
+
     ctx.fill();
 
-  //Sabendo onde esá com click
-  //***ADICIONAR DISTANCIA EM METROS A PARTIR DO CLIQUE****
-   alert(cx+" "+cy);
-
+    //Sabendo onde esá com click
+    //***ADICIONAR DISTANCIA EM METROS A PARTIR DO CLIQUE****
+    //alert(cx+" "+cy);
   }
 
   trianguloD();
@@ -197,6 +228,5 @@ function draw() {
   trianguloI();
   medidas();
   desenhaImagem();
-
 
 }
