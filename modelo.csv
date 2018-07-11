@@ -1,7 +1,7 @@
-modelo,tipo,ip,analogica,detecaodemovimento,deteccaodeface,reconhecimentofacial,reconhecimentodeplaca,cercavirtual,linhavirtual,abandonodeobjeto,retiradadeobjeto,entradadealarme,microfone,tipodelente,lente,sensor,resolucaomaxima
-VIP 1120 B G2,Bullet,1,0,1,0,0,0,0,0,0,0,0,0,Fixa,"3,6","0,25",1280
-VIP 1220 D G2,Dome,1,0,1,0,0,0,0,0,0,0,0,0,Fixa,"2,8","0,3333333333",1920
-VIP S3330,Bullet,1,0,1,0,0,0,0,0,0,0,0,0,Fixa,"3,6","0,3333333333",2048
-VIP 3230B,Bullet,1,0,1,0,0,0,1,1,0,0,0,0,Fixa,"2,8","0,3333333333",1920
-VIP 5450 D Z,Dome,1,0,1,1,0,0,1,1,1,1,1,0,Varifocal,"2,7 - 12","0,3333333333",2688
-VIP 5220 SD,Speed Dome,1,0,1,1,0,0,1,1,1,1,1,0,Varifocal,"4,7 - 94","0,3571428571",1920
+modelo,tipo,ip,analogica,detecaodemovimento,deteccaodeface,reconhecimentofacial,reconhecimentodeplaca,cercavirtual,linhavirtual,abandonodeobjeto,retiradadeobjeto,entradadealarme,microfone,tipodelente,lenteMax,lenteMin,sensor,resolucaomaxima,anguloMax,ângulo min
+VIP 1120 B G2,Bullet,1,0,1,0,0,0,0,0,0,0,0,0,Fixa,"3,6","3,6","0,25",1280,"80,36","80,36"
+VIP 1220 D G2,Dome,1,0,1,0,0,0,0,0,0,0,0,0,Fixa,"2,8","2,8","0,3333333333",1920,"103,57","103,57"
+VIP S3330 G2,Bullet,1,0,1,0,0,0,0,0,0,0,0,0,Fixa,"3,6","3,6","0,3333333333",2048,"69,2","69,2"
+VIP 3230 B,Bullet,1,0,1,0,0,0,1,1,0,0,0,0,Fixa,"2,8","2,8","0,3333333333",1920,112,112
+VIP 5450 D Z,Dome,1,0,1,1,0,0,1,1,1,1,1,0,Varifocal,"2,7",12,"0,3333333333",2688,93,32
+VIP 5220 SD,Speed Dome,1,0,1,1,0,0,1,1,1,1,1,0,Varifocal,"4,7",94,"0,3571428571",1920,59,"3,7"
