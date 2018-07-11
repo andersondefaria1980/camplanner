@@ -10,6 +10,8 @@
     function getCamerasDB($caracteristicas){
 
         //echo "-----------------";
+        //$db = (empty(getenv("MARIADB_DB_NAME")))?"nomedovancloca"?(getenv("MARIADB_DB_NAME"));
+
         $dir = 'sqlite:camplanner.db';
         $dbh  = new PDO($dir) or die("cannot open the database");
         $query =  "SELECT * FROM cameras WHERE 1=1";
