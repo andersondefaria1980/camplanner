@@ -8,8 +8,8 @@ function draw() {
   var imgCam = new Image();
 
   //COORDENADAS PONTA ESQUERDA SUPERIOR ÁREA
-  var x = 100;
-  var y = 100; 
+  var x = 0;
+  var y = 0; 
 
   //valores fixos do DCRI
   var percentD = 0.05;
@@ -33,11 +33,12 @@ function draw() {
   ctx.lineWidth = 1;
   ctx.strokeRect(0,0, 1000, 1000);
 
-  //Criando a planta - quadrado ou retangulo
-  ctx.strokeStyle = "rgba(0,0,0)";
-  ctx.lineWidth = 1;
-  ctx.strokeRect(x, y , larg*10, prof*10);
-
+  function criaPlanta(){
+    //Criando a planta - quadrado ou retangulo
+    ctx.strokeStyle = "rgba(0,0,0)";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x, y , larg*10, prof*10);
+  }
   //Calculo distância focal
   var b = lente/sensor;
   
@@ -207,9 +208,10 @@ function draw() {
     cy = event.pageY;
 
     //removendo triângulo
-    limpaArea();
+    //limpaArea();
 
     //MUDANDO A POSIÇÃO DO TRIÂNGULO CONFORME O CLICK
+    /*
     ctx.fillStyle = "rgba(255,0,0,0.5)"
     ctx.beginPath();
     ctx.moveTo(x+10,y+10);
@@ -217,18 +219,22 @@ function draw() {
     ctx.lineTo(cy-25, cx);
 
     ctx.fill();
+    */
 
-    //Sabendo onde esá com click
-    //***ADICIONAR DISTANCIA EM METROS A PARTIR DO CLIQUE****
-    //alert(cx+" "+cy);
+    //Distância do clique até a câmera
+    var calc1 = ((Math.sqrt(Math.pow(cx,2)+Math.pow(cy,2)))/10).toFixed(2);
+    var calc2 = calc1 - 4;
+    var distanciaDoClique = parseFloat(calc2.toFixed(2));
+    alert("Você está à aproximadamente " + distanciaDoClique + " metros da câmera");
   }
 
   trianguloD();
   trianguloC();
   trianguloR();
   trianguloI();
+  criaPlanta();
 
-//AJEITAR A PARTE DE SELEÇÃO E DESELEÇÃO(CORES SE PERDENDO)
+//CHECKBOX DETECÇÃO
   detecCheckbox.onchange = function() {
     if(detecCheckbox.checked) {
       limpaArea();
@@ -267,7 +273,6 @@ function draw() {
         trianguloR();
         trianguloI();
       }
-
     }else{
       limpaArea();
       if(classCheckbox.checked) {
@@ -297,8 +302,11 @@ function draw() {
         trianguloI();
       }
     }
+
+    criaPlanta();
   }
 
+//CHECKBOX CLASSIFICAÇÃO
   classCheckbox.onchange = function() {
     if(classCheckbox.checked) {
       limpaArea();
@@ -367,8 +375,9 @@ function draw() {
         trianguloI();
       }
       }
+    criaPlanta();
   }
-
+//CHECKBOX RECONHECIMENTO
   reconCheckbox.onchange = function() {
     if(reconCheckbox.checked) {
       limpaArea();
@@ -437,8 +446,10 @@ function draw() {
         trianguloI();
       }
     }
+    criaPlanta();
   }
 
+//CHECKBOX IDENTIFICAÇÃO
   identCheckbox.onchange = function() {
     if(identCheckbox.checked) {
       limpaArea();
@@ -506,6 +517,7 @@ function draw() {
       }
 
     }
+    criaPlanta();
   }
 
   medidas();
