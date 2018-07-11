@@ -10,11 +10,8 @@ function draw() {
   //COORDENADAS PONTA ESQUERDA SUPERIOR ÁREA
   var x = 100;
   var y = 100; 
-  var cordAx = 200;
-  var cordAy = 300;
-  var cordBx = 300;
-  var cordBy = 200;
 
+  //valores fixos do DCRI
   var percentD = 0.05;
   var percentC = 0.26;
   var percentR = 0.51;
@@ -41,16 +38,15 @@ function draw() {
   ctx.lineWidth = 1;
   ctx.strokeRect(x, y , larg*10, prof*10);
 
-  //Cálculos gerais
+  //Calculo distância focal
   var b = lente/sensor;
-
-  //ADICIONAR AQUI O CÁLCULO DE TODAS AS CÂMERAS EM REFERÊNCIA 
-  //A DISTÂNCIA QUE O USUÁRIO QUER VISUALIZAR
-
-
-
-  //*************************************************
   
+  //Checkbox de ativação
+  var detecCheckbox = document.querySelector('input[value="detec"]');
+  var classCheckbox = document.querySelector('input[value="class"]');
+  var reconCheckbox = document.querySelector('input[value="recon"]');
+  var identCheckbox = document.querySelector('input[value="ident"]');
+
   function trianguloD(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
     var largObjD = (resolucao/(300*percentD));
@@ -62,7 +58,7 @@ function draw() {
     var varAngularFinalD = (catAdjA_ID*varAngularD)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "rgba(0, 0,255,0.5)"
+    ctx.fillStyle = "blue"
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -73,7 +69,7 @@ function draw() {
     ctx.fill();
 
   }
-
+  
   function trianguloC(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
     var largObjC = (resolucao/(300*percentC));
@@ -85,7 +81,7 @@ function draw() {
     var varAngularFinalC = (catAdjA_C*varAngularC)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "rgba(0,255,0,0.5)"
+    ctx.fillStyle = "lime"
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -108,7 +104,7 @@ function draw() {
     var varAngularFinalR = (catAdjA_R*varAngularR)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "rgba(255,255,0,1)"
+    ctx.fillStyle = "yellow"
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -131,7 +127,7 @@ function draw() {
     var varAngularFinal = (catAdjA_I*varAngular)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "rgba(255,0,0,1)"
+    ctx.fillStyle = "red"
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -161,7 +157,7 @@ function draw() {
     ctx.fillText("a",21,112)
     ctx.fillText("d",21,120)
     ctx.fillText("e",21,128)   
-    ctx.fillText(y+"m", larg*10+x+5, ((prof*10)+y)/2);
+    ctx.fillText(prof+"m", larg*10+x+5, ((prof*10)+y)/2);
   }
 
   //adicionando o icon de camera
@@ -172,11 +168,7 @@ function draw() {
     }
   }
 
-  //mudando de posição pelo clique
-  function onDown(event){
-    cx = event.pageX;
-    cy = event.pageY;
-
+  function limpaArea(){
     //removendo triângulo
     for (var i = 0; i < 5; i++) {
       ctx.fillStyle = "rgba(255,255,255, 1)";
@@ -207,6 +199,15 @@ function draw() {
     }
 
     desenhaImagem();
+  }
+
+  //mudando de posição pelo clique
+  function onDown(event){
+    cx = event.pageX;
+    cy = event.pageY;
+
+    //removendo triângulo
+    limpaArea();
 
     //MUDANDO A POSIÇÃO DO TRIÂNGULO CONFORME O CLICK
     ctx.fillStyle = "rgba(255,0,0,0.5)"
@@ -226,7 +227,289 @@ function draw() {
   trianguloC();
   trianguloR();
   trianguloI();
+
+//AJEITAR A PARTE DE SELEÇÃO E DESELEÇÃO(CORES SE PERDENDO)
+  detecCheckbox.onchange = function() {
+    if(detecCheckbox.checked) {
+      limpaArea();
+      trianguloD();
+      if(classCheckbox.checked) {      
+        trianguloD();
+        trianguloC();
+      } 
+      if(reconCheckbox.checked) {
+        trianguloD();
+        trianguloR();
+      }
+      if(identCheckbox.checked) {
+        trianguloD();
+        trianguloI();
+      }
+
+      if(classCheckbox.checked && reconCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+        trianguloR();
+      } 
+      if(classCheckbox.checked && identCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked) {
+        trianguloD();
+        trianguloR();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked && classCheckbox.checked){
+        trianguloD();
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      }
+
+    }else{
+      limpaArea();
+      if(classCheckbox.checked) {
+        trianguloC();
+      } 
+      if(reconCheckbox.checked) {
+        trianguloR();
+      }
+      if(identCheckbox.checked) {
+        trianguloI();
+      }
+      if(classCheckbox.checked && reconCheckbox.checked) {
+        trianguloC();
+        trianguloR();
+      } 
+      if(classCheckbox.checked && identCheckbox.checked) {
+        trianguloC();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked) {
+        trianguloR();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked && classCheckbox.checked){
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      }
+    }
+  }
+
+  classCheckbox.onchange = function() {
+    if(classCheckbox.checked) {
+      limpaArea();
+      trianguloC();
+      if(detecCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+
+      } 
+      if(reconCheckbox.checked) {
+        trianguloC();
+        trianguloR();
+      }
+      if(identCheckbox.checked) {
+        trianguloC();
+        trianguloI();
+      }
+
+      if(detecCheckbox.checked && reconCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+        trianguloR();
+      } 
+      if(detecCheckbox.checked && identCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked) {
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked && detecCheckbox.checked){
+        trianguloD();
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      }
+
+
+      }else{
+        limpaArea();
+        if(detecCheckbox.checked) {
+          trianguloD();
+        }if(reconCheckbox.checked) {
+          trianguloR();
+        }if(identCheckbox.checked) {
+          trianguloI();
+        }
+      if(detecCheckbox.checked && reconCheckbox.checked) {
+        trianguloD();
+        trianguloR();
+      } 
+      if(detecCheckbox.checked && identCheckbox.checked ) {
+        trianguloD();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked) {
+        trianguloR();
+        trianguloI();
+      }
+      if(identCheckbox.checked && reconCheckbox.checked && detecCheckbox.checked){
+        trianguloD();
+        trianguloR();
+        trianguloI();
+      }
+      }
+  }
+
+  reconCheckbox.onchange = function() {
+    if(reconCheckbox.checked) {
+      limpaArea();
+      trianguloR();
+
+      
+      if(detecCheckbox.checked) {
+        trianguloD();
+        trianguloR();
+      }
+      if(classCheckbox.checked) {
+        trianguloC();
+        trianguloR();
+      } 
+      if(identCheckbox.checked) {
+        trianguloR();
+        trianguloI();
+      }
+
+      if(classCheckbox.checked && detecCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+        trianguloR();
+      } 
+      if(classCheckbox.checked && identCheckbox.checked) {
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      }
+      if(identCheckbox.checked && detecCheckbox.checked) {
+        trianguloD();
+        trianguloR();
+        trianguloI();
+      }
+      if(identCheckbox.checked && classCheckbox.checked && detecCheckbox.checked){
+        trianguloD();
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      }
+
+    }else{
+      limpaArea();
+      if(detecCheckbox.checked) {
+        trianguloD();
+      }if(classCheckbox.checked) {
+        trianguloC();
+      }if(identCheckbox.checked) {
+        trianguloI();
+      }
+      if(classCheckbox.checked && detecCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+      } 
+      if(classCheckbox.checked && identCheckbox.checked) {
+        trianguloC();
+        trianguloI();
+      }
+      if(identCheckbox.checked && detecCheckbox.checked) {
+        trianguloD();
+        trianguloI();
+      }
+      if(identCheckbox.checked && classCheckbox.checked && detecCheckbox.checked){
+        trianguloD();
+        trianguloC();
+        trianguloI();
+      }
+    }
+  }
+
+  identCheckbox.onchange = function() {
+    if(identCheckbox.checked) {
+      limpaArea();
+      trianguloI();
+      if(detecCheckbox.checked) {
+        trianguloD();
+        trianguloI();
+      }
+      if(classCheckbox.checked) {
+        trianguloC();
+        trianguloI();
+      } 
+      if(reconCheckbox.checked) {
+        trianguloR();
+        trianguloI();
+      }
+
+      if(classCheckbox.checked && reconCheckbox.checked) {
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      } 
+      if(classCheckbox.checked && detecCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+        trianguloI();
+      }
+      if(detecCheckbox.checked && reconCheckbox.checked) {
+        trianguloD();
+        trianguloR();
+        trianguloI();
+      }
+      if(detecCheckbox.checked && reconCheckbox.checked && classCheckbox.checked){
+        trianguloD();
+        trianguloC();
+        trianguloR();
+        trianguloI();
+      }
+
+    }else{
+      limpaArea();
+      if(detecCheckbox.checked) {
+        trianguloD();
+      }if(classCheckbox.checked) {
+        trianguloC();
+      }if(reconCheckbox.checked) {
+        trianguloR();
+      }
+      if(classCheckbox.checked && reconCheckbox.checked) {
+        trianguloC();
+        trianguloR();
+      } 
+      if(classCheckbox.checked && detecCheckbox.checked) {
+        trianguloD();
+        trianguloC();
+      }
+      if(detecCheckbox.checked && reconCheckbox.checked) {
+        trianguloD();
+        trianguloR();
+      }
+      if(detecCheckbox.checked && reconCheckbox.checked && classCheckbox.checked){
+        trianguloD();
+        trianguloC();
+        trianguloR();
+      }
+
+    }
+  }
+
   medidas();
   desenhaImagem();
 
 }
+  
