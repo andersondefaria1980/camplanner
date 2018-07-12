@@ -2,4 +2,3 @@ Anderson,  usuario criado com acesso "root",
 SSH - cloud.cabralnet.com. porta 22
 User= camplanner
 Password = intelbras
-
