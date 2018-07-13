@@ -344,6 +344,8 @@ Integer eget eros fringilla, aliquet purus sit amet, suscipit risus. Aenean non 
 <hr>
 <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar PDF</button>
 <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar WORD</button>
+<button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Enviar por EMAIL</button>
+
 
 <br>
 <br>
