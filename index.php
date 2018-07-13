@@ -18,7 +18,7 @@
   <div class="container">
     <div class="form-group">
         <div class="col-sm-4"> 
-            <img src="img/logo.jpeg" alt="Smiley face" width="340" height="80">
+            <img src="img/logo_fundo_claro3.png" alt="Smiley face" width="340" height="65">
         </div>
         <div class="col-sm-6">
             <h2>Projetos de Segurança</h2>
@@ -44,7 +44,6 @@
   $identificacao = (empty($_POST['identificacao']))?"":"checked";
   $reconhecimento = (empty($_POST['reconhecimento']))?"":"checked";
   $distancia = (empty($_POST['distancia']))?"":$_POST["distancia"];
-
 
   $ip = (empty($_POST['ip']))?"":"checked";
   $analogica = (empty($_POST['analogica']))?"":"checked";
@@ -159,7 +158,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-2" for="tipo">Carcterísticas:</label>
+            <label class="control-label col-sm-2" for="tipo">Características:</label>
             <div class="col-sm-2">
                 <div class="checkbox">
                     <label><input type="checkbox" name="deteccaodemovimento" <?=$deteccaodemovimento?>>Detecção de Movimento</label>
@@ -271,11 +270,8 @@
                 <h3>Seu Projeto</h3>
             </div>
          </div>
-     <div class="container" style="padding-top: 15px">
-
-        
-
-        <div class="row">
+        <div class="container" style="padding-top: 15px">
+            <div class="row">
             <div class="col-sm-2"   ">
                 <div class="row" style="height: 30px;font-weight: bold">Câmeras Encontradas</div>
                 <?php foreach ($cameras as $c){ ?>
@@ -295,14 +291,25 @@
                 <?php } ?>
             </div>
             <div class="col-sm-10" >    
-                <div class="row imagemprojeto" id="imagemprojeto">
-                    <?php if (count($cameras) > 0){ ?>        
-                        Selecione uma câmera para visualizar o projeto.
-                    <?php }else{ ?>
-                        Não encontramos nenhuma câmera com a combinação de características selecionadas.
-                    <?php } ?>           
+                <div class="row" >
+                    <div class="col-sm-8" id="dadosCameraSelecinoada" >
+                        <?php if (count($cameras) > 0){ ?>        
+                            Selecione uma câmera para visualizar o projeto e gerar a porposta.
+                        <?php }else{ ?>
+                            Não encontramos nenhuma câmera com a combinação de características selecionadas.
+                        <?php } ?> 
+                    </div>
+                    <div class="col-sm-2" >
+                        <button type="submit" id="gerarproposta" value="gerarproposta" class="btn btn-default disabled">Gerar Proposta</button>
+                    </div>
                 </div>
-                <canvas id="canvas" width="1000" height="1000"></canvas>
+                 <div class="row">
+                    <hr>
+                </div>
+                <div class="row imagemprojeto" id="imagemprojeto">
+                              
+                </div>
+                <canvas id="canvas" width="1000" height="850"></canvas>
                 <br><br><br>
             </div>
         </div>
@@ -315,6 +322,33 @@
     </div>
 <?php }//print_r($_POST);?>
 
+    <div class="titulo hidden" id="propostacomercial" >
+        <div class="container">
+            <h3>Proposta Comercial</h3>
+        </div>
+        <div class="container">
+            <hr>
+             <div id="dadosProposta" >
+             </div>
 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque viverra felis ac sem mollis finibus. Aliquam sit amet mollis leo. Phasellus suscipit, nisi vitae dictum egestas, ante risus viverra nibh, at tincidunt massa sapien sit amet libero. Cras ut vulputate massa. Nulla consectetur suscipit tellus. Morbi non porttitor risus, et tristique massa. Cras semper eros magna, at dapibus mi sodales ut. Suspendisse arcu ipsum, tincidunt pretium congue vitae, venenatis mattis felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent vel magna tristique, tempus quam eget, vulputate lacus. Etiam risus ipsum, malesuada vitae nisl non, venenatis tincidunt neque.
+
+Morbi accumsan nunc ut velit dignissim tincidunt. Morbi ac mauris elit. Ut id enim interdum, egestas turpis et, condimentum lectus. Aliquam erat volutpat. Cras quis pretium nibh. Nullam gravida hendrerit consequat. Aliquam rutrum dui fermentum purus efficitur fermentum. Duis vitae leo dictum, posuere orci et, tincidunt lacus.
+
+Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam iaculis accumsan metus, eu laoreet ipsum feugiat sit amet. Suspendisse lorem neque, tincidunt vitae mauris nec, feugiat ultrices nunc. Praesent pulvinar vitae eros a accumsan. Fusce tristique ex vel nulla congue, vel molestie lacus aliquet. Mauris at volutpat leo. Fusce nec tempus dolor. Mauris quis auctor sapien, tempus tincidunt nibh.
+
+Mauris et arcu ultricies ipsum vulputate semper id vel mauris. Curabitur sed dolor eget dolor accumsan dignissim. Phasellus vestibulum leo eget efficitur rutrum. Mauris elementum lorem ligula, eget rhoncus odio laoreet vel. Pellentesque dictum finibus nunc, a volutpat sapien tristique ut. Cras id nibh nec nulla fringilla convallis eu et elit. Duis tristique auctor nunc quis fermentum. Donec dignissim leo ipsum, et dictum arcu eleifend vel. Cras dapibus posuere nisi, sit amet sagittis nulla interdum at. Vestibulum blandit nisl eu tortor tempus, in varius dui convallis. Integer at auctor orci. Donec porta risus quis commodo tempor. Pellentesque nec elementum felis, a tempor massa. Nam vehicula, elit vitae fermentum accumsan, erat lacus euismod libero, vitae egestas felis sem non elit. Integer consectetur facilisis ante, vitae lobortis arcu auctor sed.
+
+Integer eget eros fringilla, aliquet purus sit amet, suscipit risus. Aenean non ante at sapien varius commodo. Vivamus egestas neque ac tellus gravida, sed fringilla tortor eleifend. Fusce nulla nisi, gravida ac est a, bibendum porttitor neque. Mauris mattis, nibh et accumsan finibus, nulla ipsum bibendum libero, ac tempus mi sapien vel nunc. In ipsum metus, efficitur at rutrum vehicula, bibendum vitae risus. Maecenas commodo erat nec libero dignissim imperdiet. Nam et sem ut urna convallis sodales. Donec tincidunt feugiat augue, at accumsan enim convallis non. Mauris sagittis tellus eu nulla luctus pellentesque at quis odio.
+
+<hr>
+<button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar PDF</button>
+<button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar WORD</button>
+
+<br>
+<br>
+        </div>
+
+     </div>
 </body>
 </html>

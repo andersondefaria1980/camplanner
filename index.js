@@ -5,12 +5,12 @@ function confirmInput() {
 $(function() {
 
   $('#formprincipal').submit(function(){
-    if (Number($('#largura').val().replace(",",".")) <= 0 || 
+    /*if (Number($('#largura').val().replace(",",".")) <= 0 || 
         Number($('#profundidade').val().replace(",",".")) <= 0 || 
         Number($('#distancia').val().replace(",",".")) <= 0){
       alert("Os campos Largura, Profundidade e Distância do Grau de Reconhecimento são obrigatórios. Preencha os campos e tente novamente por favor.");
       return false;
-    }
+    }*/
     return true;
   });
 
@@ -33,13 +33,17 @@ $(function() {
     var sensor = Number($(this).attr("sensor").replace(",",".")); 
     var angulo = Number($(this).attr("angulo").replace(",",".")); 
 
-
+    $('#gerarproposta').removeClass('disabled');
     draw(largura, profundidade, distancia, resolucao, lente, sensor, angulo);
     
-    //$('#formprincipal').submit();
-
+    //$('#formprincipal').submit()
   });
 
+ $('#gerarproposta').click(function(){
+  $("#propostacomercial").removeClass("hidden");
+    $(document).scrollTop( $("#propostacomercial").offset().top );
+    atualizaDadosProposta($('#cameraselecionada').val());
+  });
   $('#dimensionar').click(function(){
   	$('#cameraselecionada').val("");
   });
@@ -53,6 +57,53 @@ $(function() {
     });
     element.addClass("negrito");
     $('#imagemprojeto').hide();
+
+    atualizaDadosCamera(element.attr("value"));
+  }
+
+  function atualizaDadosCamera(id){
+    console.log("id: " + id)
+     var data = {
+      "action": "test",
+      "id": id
+    };
+    data = $(this).serialize() + "&" + $.param(data);
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "camerajson.php", //Relative or absolute path to response.php file
+      data: data,
+      success: function(data) {
+        $("#dadosCameraSelecinoada").html(
+          data["texto"]
+        );
+
+        //alert("Form submitted successfully.\nReturned json: " + data["json"]);
+      }
+    });
+    return false;
+  }
+
+  function atualizaDadosProposta(id){
+    console.log("id: " + id)
+     var data = {
+      "action": "test",
+      "id": id
+    };
+    data = $(this).serialize() + "&" + $.param(data);
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "camerajson.php", //Relative or absolute path to response.php file
+      data: data,
+      success: function(data) {
+        var texto = data["texto"];
+        texto = texto + "<br><br> Aqui vai o texto da proposta, campos pra preencher os preços, adicionar logos, produtos, nome do cliente, etc... <br><br><br>";
+        //texto += "<br /> Aqui vai o texto da proposta".
+        $("#dadosProposta").html(texto);
+      }
+    });
+    return false;
   }
 });
 

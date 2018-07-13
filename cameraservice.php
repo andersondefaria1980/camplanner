@@ -30,6 +30,23 @@
         return $cameras;
     }
 
+     function getCameraById($id){
+
+        $dir = 'sqlite:camplanner.db';
+        $dbh  = new PDO($dir) or die("cannot open the database");
+        $query =  "SELECT * FROM cameras WHERE id={$id}";
+        
+        $camera = [];
+        $lista = $dbh->query($query);
+        //print_r($dbh->query($query));
+        if(is_object($lista))
+            foreach ($lista as $row)
+                $camera = $row;
+        $dbh = null;
+
+        return $camera;
+    }
+
 }
 
 

@@ -264,7 +264,7 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
     var calc1 = ((Math.sqrt(Math.pow(cx,2)+Math.pow(cy,2)))/10).toFixed(2);
     var calc2 = calc1 - 4;
     var distanciaDoClique = parseFloat(calc2.toFixed(2));
-    alert("Você está à aproximadamente " + distanciaDoClique + " metros da câmera");
+    //alert("Você está à aproximadamente " + distanciaDoClique + " metros da câmera");
   }
 
   trianguloD();
