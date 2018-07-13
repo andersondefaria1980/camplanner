@@ -267,7 +267,7 @@
      ?>
       <div class="titulo" id="seuprojeto">
             <div class="container">
-                <h3>Seu Projeto</h3>
+                <h2>Seu Projeto</h2>
             </div>
          </div>
         <div class="container" style="padding-top: 15px">
@@ -281,9 +281,9 @@
                                   id="camera_<?=$c["id"]?>" 
                                   value="<?=$c["id"]?>"
                                   resolucao="<?=$c["resolucaomaxima"]?>"
-                                  lente="<?=$c["lente"]?>"
+                                  lente="<?=$c["lentemaximo"]?>"
                                   sensor="<?=$c["sensor"]?>"
-                                  angulo="<?=$c["angulo"]?>"
+                                  angulo="<?=$c["angulomaximo"]?>"
                             >
                                 <?php echo " - ".$c["modelo"]. " / " . $c["tipo"];?>
                             </span>
@@ -324,7 +324,7 @@
 
     <div class="titulo hidden" id="propostacomercial" >
         <div class="container">
-            <h3>Proposta Comercial</h3>
+            <h2>Proposta Comercial</h2>
         </div>
         <div class="container">
             <hr>

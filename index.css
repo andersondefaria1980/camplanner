@@ -24,8 +24,9 @@ body{
  }
 
  .titulo{
- 	background-color: #FFFFFF;
- 	border: 1px solid #e7e7e7;
+ 	background-color: #e7e7e7;
+ 	border-top: 1px solid #8A8A8A;
+     border-bottom: 1px solid #8A8A8A;
  }
 
  .explicacao{
