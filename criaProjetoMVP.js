@@ -1,12 +1,8 @@
 function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.36, sensor=0.25, angulo=80.36) {
- /* console.log("largura: " + largura);
-  console.log("profundidade: " + profundidade);
-  console.log("distancia: " + distancia);
-*/console.log("resolucao: " + resolucao);
-console.log("lente: " + lente);
-console.log("sensor: " + sensor);
-console.log("angulo: " + angulo);
-
+  console.log("resolucao: " + resolucao);
+  console.log("lente: " + lente);
+  console.log("sensor: " + sensor);
+  console.log("angulo: " + angulo);
 
   var canvas = document.getElementById("canvas");
 
@@ -17,8 +13,8 @@ console.log("angulo: " + angulo);
   var imgCam = new Image();
 
   //COORDENADAS PONTA ESQUERDA SUPERIOR ÁREA
-  var x = 0;
-  var y = 0; 
+  var x = 80;
+  var y = 80; 
 
   //valores fixos do DCRI
   var percentD = 0.05;
@@ -52,10 +48,12 @@ console.log("angulo: " + angulo);
   var b = lente/sensor;
   
   //Checkbox de ativação
-  var detecCheckbox = document.getElementById('deteccao');
-  var classCheckbox = document.getElementById('classificacao');
-  var reconCheckbox = document.getElementById('reconhecimento');
-  var identCheckbox = document.getElementById('identificacao');
+  var detecCheckbox = document.querySelector('input[value="deteccao"]');
+  var classCheckbox = document.querySelector('input[value="classificacao"]');
+  var reconCheckbox = document.querySelector('input[value="reconhecimento"]');
+  var identCheckbox = document.querySelector('input[value="identificacao"]');
+  var distCheckbox = document.querySelector('input[value="distancia"]');
+
 
   function trianguloD(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
@@ -153,63 +151,10 @@ console.log("angulo: " + angulo);
     //ADICIONANDO O QUE É LARGURA E O QUE É PROFUNDIDADE
     ctx.fillStyle = "rgba(0,0,0,0.5)"
     ctx.font = "bold 10px Time New Roman";
-    ctx.fillText("Largura", 30, 28);
-    ctx.fillText(larg +"m", ((larg*10)+x)/2, y-3);
-    ctx.fillText("P",21,40)
-    ctx.fillText("r",21,48)
-    ctx.fillText("o",21,56)
-    ctx.fillText("f",21,64)
-    ctx.fillText("u",21,72)
-    ctx.fillText("n",21,80)
-    ctx.fillText("d",21,88)
-    ctx.fillText("i",21,96)
-    ctx.fillText("d",21,104)
-    ctx.fillText("a",21,112)
-    ctx.fillText("d",21,120)
-    ctx.fillText("e",21,128)   
-    ctx.fillText(prof+"m", larg*10+x+5, ((prof*10)+y)/2);
+    ctx.fillText(larg +"m Largura", ((larg*10)+x)/2, y-3);  
+    ctx.fillText(prof+"m Profundidade", larg*10+x+5, ((prof*10)+y)/2);
   }
 
-  function trianguloI(){
-    //Cálculo distância da câmera para IDENTIFICAÇÃO
-    var angOK =  0;
-    var largObj = (resolucao/(300*percentI));
-    var distT = (largObj*b*0.7); //cateto adjacente de A
-    var catAdjA_I = parseFloat(distT.toFixed(2)); 
-    var hipB = catAdjA_I/(Math.sin(angOK)); //hipotenusa é a distancia entre o (x0,y0) e (x,y)
-    var catOpostoA_I = Math.sqrt((Math.pow(hipB, 2))-(Math.pow(catAdjA_I, 2))); //achando o cateto oposto A
-    var catOpOK = parseFloat(catOpostoA_I.toFixed(2));
-
-    //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "rgba(255,0,0,0.5)"
-    ctx.beginPath();
-    ctx.moveTo(x+10,y+10);  
-    ctx.lineTo((catOpOK*10)+x+10, (catAdjA_I*10)+y+10);
-    ctx.lineTo((catAdjA_I*10)+y+10, (catOpOK*10)+x+10);
-    ctx.fill();
-  }
-
-  function medidas(){
-    //ADICIONANDO O QUE É LARGURA E O QUE É PROFUNDIDADE
-    ctx.fillStyle = "rgba(0,0,0,0.5)"
-    ctx.font = "bold 10px Time New Roman";
-    ctx.fillText("Largura", 30, 28);
-    ctx.fillText(larg +"m", ((larg*10)+x)/2, y-3);
-    ctx.fillText("P",21,40)
-    ctx.fillText("r",21,48)
-    ctx.fillText("o",21,56)
-    ctx.fillText("f",21,64)
-    ctx.fillText("u",21,72)
-    ctx.fillText("n",21,80)
-    ctx.fillText("d",21,88)
-    ctx.fillText("i",21,96)
-    ctx.fillText("d",21,104)
-    ctx.fillText("a",21,112)
-    ctx.fillText("d",21,120)
-    ctx.fillText("e",21,128)   
-    ctx.fillText(y+"m", larg*10+x+5, ((prof*10)+y)/2);
-  }
-  
   //adicionando o icon de camera
   function desenhaImagem(){
     imgCam.src = "img/cctv.png";
@@ -229,54 +174,79 @@ console.log("angulo: " + angulo);
       ctx.strokeRect(0,0,1000,1000);
       ctx.strokeRect(x, y , larg*10, prof*10);
 
-      ctx.fillStyle = "rgba(0,0,0,0.5)"
-      ctx.font = "bold 10px Time New Roman";
-      ctx.fillText("Largura", 30, 28);
-      ctx.fillText(larg +"m", ((larg*10)+x)/2, y-3);
-      ctx.fillText("P",21,40)
-      ctx.fillText("r",21,48)
-      ctx.fillText("o",21,56)
-      ctx.fillText("f",21,64)
-      ctx.fillText("u",21,72)
-      ctx.fillText("n",21,80)
-      ctx.fillText("d",21,88)
-      ctx.fillText("i",21,96)
-      ctx.fillText("d",21,104)
-      ctx.fillText("a",21,112)
-      ctx.fillText("d",21,120)
-      ctx.fillText("e",21,128)   
-      ctx.fillText(y+"m", larg*10+x+5, ((prof*10)+y)/2);
+      medidas();
+
     }
 
     desenhaImagem();
   }
 
+
   //mudando de posição pelo clique
+  //*****ARRUMAR PARTE DE MUDAR DE COR POR CLIQUE, COORDENADAS NÃO ESTÃO CORRETAS PELO CLIQUE
   function onDown(event){
     cx = event.pageX;
     cy = event.pageY;
 
+    var calc1 = ((Math.sqrt(Math.pow(cx-x,2)+Math.pow(cy-y,2)))/10).toFixed(2);
+    var calc2 = calc1 - 9;
+    var distanciaDoClique = parseFloat(calc2.toFixed(2));
+
     //removendo triângulo
-    //limpaArea();
+    limpaArea();
 
-    //MUDANDO A POSIÇÃO DO TRIÂNGULO CONFORME O CLICK
-    /*
-    ctx.fillStyle = "rgba(255,0,0,0.5)"
+    //Cálculo distância da câmera
+      var largObj1 = (resolucao/(300*percentD));
+      var distT1 = (largObj1*b*0.7); 
+
+      var largObj2 = (resolucao/(300*percentC));
+      var distT2 = (largObj2*b*0.7); 
+
+      var largObj3 = (resolucao/(300*percentR));
+      var distT3 = (largObj3*b*0.7); 
+
+      var largObj4 = (resolucao/(300*percentI));
+      var distT4 = (largObj4*b*0.7); 
+
+
+    //**arrumar isso aqui
+    if(distanciaDoClique  <= distT4){
+      ctx.fillStyle = "red"
+      var distTF = distT4;
+    }else if(distanciaDoClique > distT4 && distanciaDoClique <= distT3){
+      ctx.fillStyle = "yellow"
+      var distTF = distT3;
+    }else if(distanciaDoClique > distT3 && distanciaDoClique <= distT2){ 
+      ctx.fillStyle = "green"
+      var distTF = distT2;
+    }else{
+      ctx.fillStyle = "blue"
+      var distTF = distT1;
+    }
+
+    var catAdjA_F = parseFloat(distTF.toFixed(2)) *10; //cateto adjacente de A
+    var varAngularF = (45 - ang/2)/45;
+    var varAngularFinalF = (catAdjA_F*varAngularF)/2;
+
+
     ctx.beginPath();
-    ctx.moveTo(x+10,y+10);
-    ctx.lineTo(cx, cy-25);
-    ctx.lineTo(cy-25, cx);
-
+    ctx.moveTo(cx-10, cy-110);
+    ctx.lineTo(x+varAngularFinalF, y+catAdjA_F - varAngularFinalF);
+    //parte de cima (tamanho, angulação)
+    ctx.lineTo(x+catAdjA_F - varAngularFinalF, y+varAngularFinalF); 
     ctx.fill();
-    */
+  
 
     //Distância do clique até a câmera
-    var calc1 = ((Math.sqrt(Math.pow(cx,2)+Math.pow(cy,2)))/10).toFixed(2);
-    var calc2 = calc1 - 4;
-    var distanciaDoClique = parseFloat(calc2.toFixed(2));
-    //alert("Você está à aproximadamente " + distanciaDoClique + " metros da câmera");
+    distCheckbox.onchange = function(){
+      if(distCheckbox.checked){
+        alert("Você está à aproximadamente " + distanciaDoClique + " metros da câmera");
+      }    
+    }
+
   }
 
+  limpaArea();
   trianguloD();
   trianguloC();
   trianguloR();
