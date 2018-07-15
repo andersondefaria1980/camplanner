@@ -4,6 +4,7 @@ function confirmInput() {
 } 
 $(function() {
 
+
   $('#formprincipal').submit(function(){
     /*if (Number($('#largura').val().replace(",",".")) <= 0 || 
         Number($('#profundidade').val().replace(",",".")) <= 0 || 
@@ -14,9 +15,9 @@ $(function() {
     return true;
   });
 
-  $('#largura').maskMoney({ decimal: ',', thousands: '', precision: 2 });
-  $('#profundidade').maskMoney({ decimal: ',', thousands: '', precision: 2 });
-  $('#distancia').maskMoney({ decimal: ',', thousands: '', precision: 2 });
+  //$('#largura').maskMoney({ decimal: ',', thousands: '', precision: 2 });
+  //$('#profundidade').maskMoney({ decimal: ',', thousands: '', precision: 2 });
+  //$('#distancia').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   
   $('.camera').click(function(){
     $('#cameraselecionada').val($(this).attr("value"));
@@ -35,12 +36,19 @@ $(function() {
 
     $('#gerarproposta').removeClass('disabled');
     draw(largura, profundidade, distancia, resolucao, lente, sensor, angulo);
+
+    $('#row-reconhecimento').removeClass('hidden');
     
     //$('#formprincipal').submit()
   });
 
+ $('.btn-proposta').click(function(){
+    alert('Função ainda não disponível. Será desenvolvida em breve. Desculpe o transtorno.');
+ }); 
  $('#gerarproposta').click(function(){
-  $("#propostacomercial").removeClass("hidden");
+    $("#propostacomercial").removeClass("hidden");
+    $("#dadosproposta").removeClass("hidden");
+    $("#botoesproposta").removeClass("hidden");
     $(document).scrollTop( $("#propostacomercial").offset().top );
     atualizaDadosProposta($('#cameraselecionada').val());
   });
@@ -56,7 +64,7 @@ $(function() {
       $(this).removeClass("negrito");
     });
     element.addClass("negrito");
-    $('#imagemprojeto').hide();
+    //$('#imagemprojeto').hide();
 
     atualizaDadosCamera(element.attr("value"));
   }
@@ -75,7 +83,7 @@ $(function() {
       data: data,
       success: function(data) {
         $("#dadosCameraSelecinoada").html(
-          data["texto"]
+          data["texto"] + "<br><i>Aqui você pode visualizar o ângulo de cobertura de cada câmera selecionada. Após escolher a câmera você ainda pode gerar uma proposta para seu cliente.</i>"
         );
 
         //alert("Form submitted successfully.\nReturned json: " + data["json"]);
@@ -98,9 +106,9 @@ $(function() {
       data: data,
       success: function(data) {
         var texto = data["texto"];
-        texto = texto + "<br><br> Aqui vai o texto da proposta, campos pra preencher os preços, adicionar logos, produtos, nome do cliente, etc... <br><br><br>";
+        texto = "<br><br>"+ texto + "<br><br> Aqui vai o texto da proposta, campos pra preencher os preços, adicionar logos, produtos, nome do cliente, etc... <br><br><br>";
         //texto += "<br /> Aqui vai o texto da proposta".
-        $("#dadosProposta").html(texto);
+        $("#dadosproposta").html(texto);
       }
     });
     return false;
