@@ -193,7 +193,7 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
     var distanciaDoClique = parseFloat(calc2.toFixed(2));
 
     //removendo triângulo
-    limpaArea();
+    //limpaArea();
 
     //Cálculo distância da câmera
       var largObj1 = (resolucao/(300*percentD));
@@ -210,40 +210,42 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
 
 
     //**arrumar isso aqui
-    if(distanciaDoClique  <= distT4){
-      ctx.fillStyle = "red"
-      var distTF = distT4;
-    }else if(distanciaDoClique > distT4 && distanciaDoClique <= distT3){
-      ctx.fillStyle = "yellow"
-      var distTF = distT3;
-    }else if(distanciaDoClique > distT3 && distanciaDoClique <= distT2){ 
-      ctx.fillStyle = "green"
-      var distTF = distT2;
-    }else{
-      ctx.fillStyle = "blue"
-      var distTF = distT1;
-    }
+      if(distanciaDoClique  <= distT4){
+        ctx.fillStyle = "red"
+        var distTF = distT4;
+      }else if(distanciaDoClique > distT4 && distanciaDoClique <= distT3){
+        ctx.fillStyle = "yellow"
+        var distTF = distT3;
+      }else if(distanciaDoClique > distT3 && distanciaDoClique <= distT2){ 
+        ctx.fillStyle = "green"
+        var distTF = distT2;
+      }else{
+        ctx.fillStyle = "blue"
+        var distTF = distT1;
+      }
 
     var catAdjA_F = parseFloat(distTF.toFixed(2)) *10; //cateto adjacente de A
     var varAngularF = (45 - ang/2)/45;
     var varAngularFinalF = (catAdjA_F*varAngularF)/2;
 
 
-    ctx.beginPath();
-    ctx.moveTo(cx-10, cy-110);
-    ctx.lineTo(x+varAngularFinalF, y+catAdjA_F - varAngularFinalF);
-    //parte de cima (tamanho, angulação)
-    ctx.lineTo(x+catAdjA_F - varAngularFinalF, y+varAngularFinalF); 
-    ctx.fill();
+    var novoX = cx-10-(x+varAngularFinalF);
+    var novoY = cy-90-(y+catAdjA_F - varAngularFinalF);
   
 
-    //Distância do clique até a câmera
-    distCheckbox.onchange = function(){
-      if(distCheckbox.checked){
-        alert("Você está à aproximadamente " + distanciaDoClique + " metros da câmera");
-      }    
-    }
 
+    /*ctx.beginPath();
+    ctx.moveTo(x,y);
+    //ctx.lineTo(cx-10, cy-90);
+    ctx.lineTo(cx+varAngularFinalF, cy+catAdjA_F - varAngularFinalF);
+    ctx.lineTo(x+catAdjA_F - varAngularFinalF+novoX, y+varAngularFinalF-novoY); 
+    ctx.fill();
+  	*/
+
+    //Distância do clique até a câmera
+    alert("Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera");
+   
+  
   }
 
   limpaArea();
