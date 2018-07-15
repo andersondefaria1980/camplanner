@@ -338,10 +338,13 @@
 
         Integer eget eros fringilla, aliquet purus sit amet, suscipit risus. Aenean non ante at sapien varius commodo. Vivamus egestas neque ac tellus gravida, sed fringilla tortor eleifend. Fusce nulla nisi, gravida ac est a, bibendum porttitor neque. Mauris mattis, nibh et accumsan finibus, nulla ipsum bibendum libero, ac tempus mi sapien vel nunc. In ipsum metus, efficitur at rutrum vehicula, bibendum vitae risus. Maecenas commodo erat nec libero dignissim imperdiet. Nam et sem ut urna convallis sodales. Donec tincidunt feugiat augue, at accumsan enim convallis non. Mauris sagittis tellus eu nulla luctus pellentesque at quis odio.
 
+        
+    </div>
+    <div id="botoesproposta"  class="container hidden">
         <hr>
-        <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar PDF</button>
-        <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar WORD</button>
-        <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Enviar por EMAIL</button>
+        <button type="submit" id="gerarpdf" value="gerarpdf" class="btn btn-danger btn-proposta">Gerar PDF</button>
+        <button type="submit" id="gerarword" value="gerarword" class="btn btn-primary btn-proposta">Gerar WORD</button>
+        <button type="submit" id="enviarporemail" value="enviarporemail" class="btn btn-success btn-proposta">Enviar por EMAIL</button>
 
 
         <br>

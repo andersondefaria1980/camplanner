@@ -42,9 +42,13 @@ $(function() {
     //$('#formprincipal').submit()
   });
 
+ $('.btn-proposta').click(function(){
+    alert('Função ainda não disponível. Será desenvolvida em breve. Desculpe o transtorno.');
+ }); 
  $('#gerarproposta').click(function(){
     $("#propostacomercial").removeClass("hidden");
     $("#dadosproposta").removeClass("hidden");
+    $("#botoesproposta").removeClass("hidden");
     $(document).scrollTop( $("#propostacomercial").offset().top );
     atualizaDadosProposta($('#cameraselecionada').val());
   });
@@ -79,7 +83,7 @@ $(function() {
       data: data,
       success: function(data) {
         $("#dadosCameraSelecinoada").html(
-          data["texto"]
+          data["texto"] + "<br><i>Aqui você pode visualizar o ângulo de cobertura de cada câmera selecionada. Após escolher a câmera você ainda pode gerar uma proposta para seu cliente.</i>"
         );
 
         //alert("Form submitted successfully.\nReturned json: " + data["json"]);
