@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="index.js"></script>
-    <script src="criaProj.js"></script>
+    <script src="criaProjetoMVP.js"></script>
 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -22,12 +22,11 @@
         </div>
         <div class="col-sm-6">
             <h2>Projetos de Segurança</h2>
-            <!--<h3>Dimensionamento de Projetos de Segurança</h3>-->
         </div>
     </div>
     <div class="form-group">
         <span class="col-sm-6"style="float: center;">Descubra qual o projeto de câmeras ideal para seu estabelecimento.</span>
-        <span class="col-sm-2"style="float: right; font-style: italic;">Versão 1.3 - Beta</span>
+        <span class="col-sm-2"style="float: right; font-style: italic;">Versão 1.4 - Beta</span>
     </div>   
   </div>
 </div>
@@ -71,7 +70,7 @@
     <form class="form-horizontal" id="formprincipal" action="index.php" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" for="largura" >Largura (metros):</label>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 <input type="number" step="1" min="0" max="999" class="form-control number" id="largura" placeholder="0" name="largura" value="<?=$largura?>">
             </div>
            <!-- <label class="control-label col-sm-2" for="largura">Comprimento (metros):</label>
@@ -80,56 +79,27 @@
             </div> --> 
 
             <label class="control-label col-sm-2" for="profundidade">Profundidade (metros):</label>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 <input type="number" step="1" min="0" max="999" class="form-control number" id="profundidade" placeholder="0" name="profundidade" value="<?=$profundidade?>">
             </div>
-        </div>
 
-        <div class="form-group">
-            
-            <label class="control-label col-sm-2 " for="grau-reconhecimento" >Grau de Reconhecimento:</label>
-            
-            <!--<span data-toggle="tooltip" title="DCRI" class="glyphicon glyphicon-question-sign" alt="asdfsa" ></span>-->
-            
-            <div class="col-sm-2">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="deteccao" <?=$deteccao?>>Detecção</label>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="classificacao" <?=$classificacao?>>Classificação</label>
-                </div>
-            </div>
-            
-            <div class="col-sm-2">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="reconhecimento" <?=$reconhecimento?>>Reconhecimento</label>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="identificacao" <?=$identificacao?>>Identificação</label>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="form-group">
-            
             <label class="control-label col-sm-2" for="distancia-grau-reconhecimento" >Distância Grau de Reconhecimento:</label>
-            
-
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 <input type="number" step="1" min="0" max="999" class="form-control number" id="distancia" placeholder="0" name="distancia" value="<?=$distancia?>">
             </div>
-
             <div class="col-sm-1">
-              <a href="#demo" class="btn btn-info btn-sm" data-toggle="collapse">?</a>
+              <a href="#demo" class="btn btn-primary btn-sm" data-toggle="collapse">?</a>
             </div>
 
-            <div class="col-sm-8">
-              <div id="demo" class="collapse justify explicacao">
+           
+        </div>
+
+
+            <div id="demo" class="collapse justify explicacao">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
+                
 
                 <b>DCRI:</b> 
                     <br/><b> - Detecção: </b> é tudo que é possível ver na imagem.
@@ -140,8 +110,9 @@
 
                     <br/><b> - Identificação: </b> é quando você consegue visualizar claramente o rosto da pessoa a ponto de lembrar caso não a conheça a pessoa.
               </div>
-            </div>
-        </div>
+    </div>
+      
+
       
         <div class="form-group">
             <label class="control-label col-sm-2" for="tipo">Tipo de Câmera:</label>
@@ -224,7 +195,7 @@
                 </a>
             </div>
             <div class="col-sm-6"  >
-                <button type="submit" id="dimensionar" value="dimensionar" class="btn btn-default">Dimensionar Projeto</button>
+                <button type="submit" id="dimensionar" value="dimensionar" class="btn btn-primary">Dimensionar Projeto</button>
             </div>
         </div>
         <input type="hidden" id="cameraselecionada" name="cameraselecionada" value="<?=$cameraselecionada?>">
@@ -300,16 +271,43 @@
                         <?php } ?> 
                     </div>
                     <div class="col-sm-2" >
-                        <button type="submit" id="gerarproposta" value="gerarproposta" class="btn btn-default disabled">Gerar Proposta</button>
+                        <button type="submit" id="gerarproposta" value="gerarproposta" class="btn btn-primary disabled">Gerar Proposta</button>
                     </div>
                 </div>
                  <div class="row">
                     <hr>
                 </div>
-                <div class="row imagemprojeto" id="imagemprojeto">
-                              
+                <div class="form-group hidden" id="row-reconhecimento">
+            
+                    <label class="control-label col-sm-3 " for="grau-reconhecimento" >Selecione o grau de reconhecimento apresentado:</label>
+                    
+                    <!--<span data-toggle="tooltip" title="DCRI" class="glyphicon glyphicon-question-sign" alt="asdfsa" ></span>-->
+                    
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="deteccao" name="deteccao" checked>Detecção</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="classificacao" name="classificacao" checked>Classificação</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="reconhecimento" name="reconhecimento" checked>Reconhecimento</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="identificacao" name="identificacao" checked>Identificação</label>
+                        </div>
+                    </div>
+            
                 </div>
-                <canvas id="canvas" width="1000" height="850"></canvas>
+                
+                <canvas id="canvas" width="1000" height="1000"></canvas>
                 <br><br><br>
             </div>
         </div>
@@ -326,31 +324,42 @@
         <div class="container">
             <h2>Proposta Comercial</h2>
         </div>
-        <div class="container">
-            <hr>
-             <div id="dadosProposta" >
-             </div>
+    </div>
+    <div id="dadosproposta"  class="container hidden">
+        <hr>
+        
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque viverra felis ac sem mollis finibus. Aliquam sit amet mollis leo. Phasellus suscipit, nisi vitae dictum egestas, ante risus viverra nibh, at tincidunt massa sapien sit amet libero. Cras ut vulputate massa. Nulla consectetur suscipit tellus. Morbi non porttitor risus, et tristique massa. Cras semper eros magna, at dapibus mi sodales ut. Suspendisse arcu ipsum, tincidunt pretium congue vitae, venenatis mattis felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent vel magna tristique, tempus quam eget, vulputate lacus. Etiam risus ipsum, malesuada vitae nisl non, venenatis tincidunt neque.
 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque viverra felis ac sem mollis finibus. Aliquam sit amet mollis leo. Phasellus suscipit, nisi vitae dictum egestas, ante risus viverra nibh, at tincidunt massa sapien sit amet libero. Cras ut vulputate massa. Nulla consectetur suscipit tellus. Morbi non porttitor risus, et tristique massa. Cras semper eros magna, at dapibus mi sodales ut. Suspendisse arcu ipsum, tincidunt pretium congue vitae, venenatis mattis felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent vel magna tristique, tempus quam eget, vulputate lacus. Etiam risus ipsum, malesuada vitae nisl non, venenatis tincidunt neque.
+        Morbi accumsan nunc ut velit dignissim tincidunt. Morbi ac mauris elit. Ut id enim interdum, egestas turpis et, condimentum lectus. Aliquam erat volutpat. Cras quis pretium nibh. Nullam gravida hendrerit consequat. Aliquam rutrum dui fermentum purus efficitur fermentum. Duis vitae leo dictum, posuere orci et, tincidunt lacus.
 
-Morbi accumsan nunc ut velit dignissim tincidunt. Morbi ac mauris elit. Ut id enim interdum, egestas turpis et, condimentum lectus. Aliquam erat volutpat. Cras quis pretium nibh. Nullam gravida hendrerit consequat. Aliquam rutrum dui fermentum purus efficitur fermentum. Duis vitae leo dictum, posuere orci et, tincidunt lacus.
+        Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam iaculis accumsan metus, eu laoreet ipsum feugiat sit amet. Suspendisse lorem neque, tincidunt vitae mauris nec, feugiat ultrices nunc. Praesent pulvinar vitae eros a accumsan. Fusce tristique ex vel nulla congue, vel molestie lacus aliquet. Mauris at volutpat leo. Fusce nec tempus dolor. Mauris quis auctor sapien, tempus tincidunt nibh.
 
-Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam iaculis accumsan metus, eu laoreet ipsum feugiat sit amet. Suspendisse lorem neque, tincidunt vitae mauris nec, feugiat ultrices nunc. Praesent pulvinar vitae eros a accumsan. Fusce tristique ex vel nulla congue, vel molestie lacus aliquet. Mauris at volutpat leo. Fusce nec tempus dolor. Mauris quis auctor sapien, tempus tincidunt nibh.
+        Mauris et arcu ultricies ipsum vulputate semper id vel mauris. Curabitur sed dolor eget dolor accumsan dignissim. Phasellus vestibulum leo eget efficitur rutrum. Mauris elementum lorem ligula, eget rhoncus odio laoreet vel. Pellentesque dictum finibus nunc, a volutpat sapien tristique ut. Cras id nibh nec nulla fringilla convallis eu et elit. Duis tristique auctor nunc quis fermentum. Donec dignissim leo ipsum, et dictum arcu eleifend vel. Cras dapibus posuere nisi, sit amet sagittis nulla interdum at. Vestibulum blandit nisl eu tortor tempus, in varius dui convallis. Integer at auctor orci. Donec porta risus quis commodo tempor. Pellentesque nec elementum felis, a tempor massa. Nam vehicula, elit vitae fermentum accumsan, erat lacus euismod libero, vitae egestas felis sem non elit. Integer consectetur facilisis ante, vitae lobortis arcu auctor sed.
 
-Mauris et arcu ultricies ipsum vulputate semper id vel mauris. Curabitur sed dolor eget dolor accumsan dignissim. Phasellus vestibulum leo eget efficitur rutrum. Mauris elementum lorem ligula, eget rhoncus odio laoreet vel. Pellentesque dictum finibus nunc, a volutpat sapien tristique ut. Cras id nibh nec nulla fringilla convallis eu et elit. Duis tristique auctor nunc quis fermentum. Donec dignissim leo ipsum, et dictum arcu eleifend vel. Cras dapibus posuere nisi, sit amet sagittis nulla interdum at. Vestibulum blandit nisl eu tortor tempus, in varius dui convallis. Integer at auctor orci. Donec porta risus quis commodo tempor. Pellentesque nec elementum felis, a tempor massa. Nam vehicula, elit vitae fermentum accumsan, erat lacus euismod libero, vitae egestas felis sem non elit. Integer consectetur facilisis ante, vitae lobortis arcu auctor sed.
+        Integer eget eros fringilla, aliquet purus sit amet, suscipit risus. Aenean non ante at sapien varius commodo. Vivamus egestas neque ac tellus gravida, sed fringilla tortor eleifend. Fusce nulla nisi, gravida ac est a, bibendum porttitor neque. Mauris mattis, nibh et accumsan finibus, nulla ipsum bibendum libero, ac tempus mi sapien vel nunc. In ipsum metus, efficitur at rutrum vehicula, bibendum vitae risus. Maecenas commodo erat nec libero dignissim imperdiet. Nam et sem ut urna convallis sodales. Donec tincidunt feugiat augue, at accumsan enim convallis non. Mauris sagittis tellus eu nulla luctus pellentesque at quis odio.
 
-Integer eget eros fringilla, aliquet purus sit amet, suscipit risus. Aenean non ante at sapien varius commodo. Vivamus egestas neque ac tellus gravida, sed fringilla tortor eleifend. Fusce nulla nisi, gravida ac est a, bibendum porttitor neque. Mauris mattis, nibh et accumsan finibus, nulla ipsum bibendum libero, ac tempus mi sapien vel nunc. In ipsum metus, efficitur at rutrum vehicula, bibendum vitae risus. Maecenas commodo erat nec libero dignissim imperdiet. Nam et sem ut urna convallis sodales. Donec tincidunt feugiat augue, at accumsan enim convallis non. Mauris sagittis tellus eu nulla luctus pellentesque at quis odio.
-
-<hr>
-<button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar PDF</button>
-<button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar WORD</button>
-<button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Enviar por EMAIL</button>
+        <hr>
+        <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar PDF</button>
+        <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Gerar WORD</button>
+        <button type="submit" id="gerarpdg" value="gerarpdg" class="btn btn-default ">Enviar por EMAIL</button>
 
 
-<br>
-<br>
+        <br>
+        <br>
+    </div>
+
+<div class="footer titulo">
+    <form id="formprincipal" action="faleconosco.php" method="post">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">A Camplanner é uma startup formada por colaboradores Intelbras. Nosso objetivo é disponibilizar um software e aplicativo para auxiliar o dimensionamento de projetos de segurança. Envie críticas, sujestões e dúvidas clicando no botão "Fale conosco".</div>
+            <div class="col-sm-2">
+                <button type="submit" id="faleconosco" value="faleconosco" class="btn btn-warning">Fale conosco</button>
+            </div>
         </div>
-
-     </div>
+    </form>
+</div>
+ 
+ </div>
 </body>
 </html>

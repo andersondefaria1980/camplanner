@@ -4,6 +4,7 @@ function confirmInput() {
 } 
 $(function() {
 
+
   $('#formprincipal').submit(function(){
     /*if (Number($('#largura').val().replace(",",".")) <= 0 || 
         Number($('#profundidade').val().replace(",",".")) <= 0 || 
@@ -35,12 +36,15 @@ $(function() {
 
     $('#gerarproposta').removeClass('disabled');
     draw(largura, profundidade, distancia, resolucao, lente, sensor, angulo);
+
+    $('#row-reconhecimento').removeClass('hidden');
     
     //$('#formprincipal').submit()
   });
 
  $('#gerarproposta').click(function(){
-  $("#propostacomercial").removeClass("hidden");
+    $("#propostacomercial").removeClass("hidden");
+    $("#dadosproposta").removeClass("hidden");
     $(document).scrollTop( $("#propostacomercial").offset().top );
     atualizaDadosProposta($('#cameraselecionada').val());
   });
@@ -56,7 +60,7 @@ $(function() {
       $(this).removeClass("negrito");
     });
     element.addClass("negrito");
-    $('#imagemprojeto').hide();
+    //$('#imagemprojeto').hide();
 
     atualizaDadosCamera(element.attr("value"));
   }
@@ -98,9 +102,9 @@ $(function() {
       data: data,
       success: function(data) {
         var texto = data["texto"];
-        texto = texto + "<br><br> Aqui vai o texto da proposta, campos pra preencher os preços, adicionar logos, produtos, nome do cliente, etc... <br><br><br>";
+        texto = "<br><br>"+ texto + "<br><br> Aqui vai o texto da proposta, campos pra preencher os preços, adicionar logos, produtos, nome do cliente, etc... <br><br><br>";
         //texto += "<br /> Aqui vai o texto da proposta".
-        $("#dadosProposta").html(texto);
+        $("#dadosproposta").html(texto);
       }
     });
     return false;

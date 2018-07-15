@@ -7,6 +7,7 @@ console.log("lente: " + lente);
 console.log("sensor: " + sensor);
 console.log("angulo: " + angulo);
 
+
   var canvas = document.getElementById("canvas");
 
   //EventListener do click do mouse
@@ -31,10 +32,10 @@ console.log("angulo: " + angulo);
   var dist = distancia; 
 
   //informações que será pego do BD
-  var resolucao = 1280;
-  var lente = 0.36;
-  var sensor = 0.25;
-  var ang = 80;
+  var resolucao = resolucao;
+  var lente = lente;
+  var sensor = sensor;
+  var ang = angulo;
 
   //borda canvas
   ctx.strokeStyle = "rgba(0,0,0)";
@@ -51,10 +52,10 @@ console.log("angulo: " + angulo);
   var b = lente/sensor;
   
   //Checkbox de ativação
-  var detecCheckbox = document.querySelector('input[value="detec"]');
-  var classCheckbox = document.querySelector('input[value="class"]');
-  var reconCheckbox = document.querySelector('input[value="recon"]');
-  var identCheckbox = document.querySelector('input[value="ident"]');
+  var detecCheckbox = document.getElementById('deteccao');
+  var classCheckbox = document.getElementById('classificacao');
+  var reconCheckbox = document.getElementById('reconhecimento');
+  var identCheckbox = document.getElementById('identificacao');
 
   function trianguloD(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO

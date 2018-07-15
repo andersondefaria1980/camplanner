@@ -19,9 +19,6 @@ body{
       background-color: white;
  }
 
- .imagemprojeto{
- 	height: 300px;
- }
 
  .titulo{
  	background-color: #e7e7e7;
@@ -31,6 +28,10 @@ body{
 
  .explicacao{
  	font-size: 12px;
+ }
+
+ .footer{
+ 	height: 70px;
  }
 
 </style>
