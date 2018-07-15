@@ -14,9 +14,9 @@ $(function() {
     return true;
   });
 
-  $('#largura').maskMoney({ decimal: ',', thousands: '', precision: 2 });
-  $('#profundidade').maskMoney({ decimal: ',', thousands: '', precision: 2 });
-  $('#distancia').maskMoney({ decimal: ',', thousands: '', precision: 2 });
+  //$('#largura').maskMoney({ decimal: ',', thousands: '', precision: 2 });
+  //$('#profundidade').maskMoney({ decimal: ',', thousands: '', precision: 2 });
+  //$('#distancia').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   
   $('.camera').click(function(){
     $('#cameraselecionada').val($(this).attr("value"));

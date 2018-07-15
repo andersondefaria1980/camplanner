@@ -71,8 +71,8 @@
     <form class="form-horizontal" id="formprincipal" action="index.php" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" for="largura" >Largura (metros):</label>
-            <div class="col-sm-1">
-                <input type="text" maxlength="5" class="form-control number" id="largura" placeholder="0,00" name="largura" value="<?=$largura?>">
+            <div class="col-sm-2">
+                <input type="number" step="1" min="0" max="999" class="form-control number" id="largura" placeholder="0" name="largura" value="<?=$largura?>">
             </div>
            <!-- <label class="control-label col-sm-2" for="largura">Comprimento (metros):</label>
             <div class="col-sm-1">
@@ -80,8 +80,8 @@
             </div> --> 
 
             <label class="control-label col-sm-2" for="profundidade">Profundidade (metros):</label>
-            <div class="col-sm-1">
-                <input type="text" maxlength="5" class="form-control number" id="profundidade" placeholder="0,00" name="profundidade" value="<?=$profundidade?>">
+            <div class="col-sm-2">
+                <input type="number" step="1" min="0" max="999" class="form-control number" id="profundidade" placeholder="0" name="profundidade" value="<?=$profundidade?>">
             </div>
         </div>
 
@@ -120,8 +120,8 @@
             <label class="control-label col-sm-2" for="distancia-grau-reconhecimento" >Distância Grau de Reconhecimento:</label>
             
 
-            <div class="col-sm-1">
-                <input type="text" maxlength="5" class="form-control number" id="distancia" placeholder="0,00" name="distancia" value="<?=$distancia?>">
+            <div class="col-sm-2">
+                <input type="number" step="1" min="0" max="999" class="form-control number" id="distancia" placeholder="0" name="distancia" value="<?=$distancia?>">
             </div>
 
             <div class="col-sm-1">
