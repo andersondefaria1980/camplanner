@@ -60,6 +60,10 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
     var largObjD = (resolucao/(300*percentD));
     var distTD = (largObjD*b*0.7); 
     var catAdjA_ID = parseFloat(distTD.toFixed(2)) *10; //cateto adjacente de A
+    ctx.fillStyle = "rgba(0,0,0,0.5)"
+    ctx.font = "bold 10px Time New Roman";
+    ctx.fillText("Distância máxima de Detecção: "+parseFloat(distTD.toFixed(2))+" m", 10,10);  
+
 
     //TRABALHANDO A VARIAÇÃO ANGULAR
     var varAngularD = (45 - ang/2)/45;
@@ -83,6 +87,9 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
     var largObjC = (resolucao/(300*percentC));
     var distTC = (largObjC*b*0.7); 
     var catAdjA_C = parseFloat(distTC.toFixed(2)) *10; //cateto adjacente de A
+    ctx.fillStyle = "rgba(0,0,0,0.5)"
+    ctx.font = "bold 10px Time New Roman";
+    ctx.fillText("Distância máxima de Classificação: "+parseFloat(distTC.toFixed(2))+" m", 10,20);  
 
     //TRABALHANDO A VARIAÇÃO ANGULAR
     var varAngularC = (45 - ang/2)/45;
@@ -106,6 +113,9 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
     var largObjR = (resolucao/(300*percentR));
     var distTR = (largObjR*b*0.7); 
     var catAdjA_R = parseFloat(distTR.toFixed(2)) *10; //cateto adjacente de A
+    ctx.fillStyle = "rgba(0,0,0,0.5)"
+    ctx.font = "bold 10px Time New Roman";
+    ctx.fillText("Distância máxima de reconhecimento: "+parseFloat(distTR.toFixed(2))+" m", 10,30);  
 
     //TRABALHANDO A VARIAÇÃO ANGULAR
     var varAngularR = (45 - ang/2)/45;
@@ -129,6 +139,9 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
     var largObj = (resolucao/(300*percentI));
     var distT = (largObj*b*0.7); 
     var catAdjA_I = parseFloat(distT.toFixed(2)) *10; //cateto adjacente de A
+    ctx.fillStyle = "rgba(0,0,0,0.5)"
+    ctx.font = "bold 10px Time New Roman";
+    ctx.fillText("Distância máxima de Identificação: "+parseFloat(distT.toFixed(2))+" m", 10,40);  
 
     //TRABALHANDO A VARIAÇÃO ANGULAR
     var varAngular = (45 - ang/2)/45;
@@ -224,27 +237,20 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
         var distTF = distT1;
       }
 
-    var catAdjA_F = parseFloat(distTF.toFixed(2)) *10; //cateto adjacente de A
+
+    /*var catAdjA_F = parseFloat(distTF.toFixed(2)) *10; //cateto adjacente de A
     var varAngularF = (45 - ang/2)/45;
     var varAngularFinalF = (catAdjA_F*varAngularF)/2;
-
 
     var novoX = cx-10-(x+varAngularFinalF);
     var novoY = cy-90-(y+catAdjA_F - varAngularFinalF);
   
-
-
-    /*ctx.beginPath();
+    ctx.beginPath();
     ctx.moveTo(x,y);
-    //ctx.lineTo(cx-10, cy-90);
-    ctx.lineTo(cx+varAngularFinalF, cy+catAdjA_F - varAngularFinalF);
+    ctx.lineTo(cx-10, cy-90);
+    ctx.lineTo(x+varAngularFinalF, y+catAdjA_F - varAngularFinalF);
     ctx.lineTo(x+catAdjA_F - varAngularFinalF+novoX, y+varAngularFinalF-novoY); 
-    ctx.fill();
-  	*/
-
-    //Distância do clique até a câmera
-    alert("Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera");
-   
+    ctx.fill();*/
   
   }
 
