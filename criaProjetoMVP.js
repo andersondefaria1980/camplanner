@@ -243,7 +243,10 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
   	*/
 
     //Distância do clique até a câmera
-    alert("Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera");
+    //alert("Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera");
+    var texto = "Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera"
+    document.getElementById("msg-distancia").innerHTML = texto;
+    document.getElementById("row-distancia").classList.remove('hidden');
    
   
   }
