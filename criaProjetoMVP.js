@@ -48,11 +48,11 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
   var b = lente/sensor;
   
   //Checkbox de ativação
-  var detecCheckbox = document.querySelector('input[value="deteccao"]');
-  var classCheckbox = document.querySelector('input[value="classificacao"]');
-  var reconCheckbox = document.querySelector('input[value="reconhecimento"]');
-  var identCheckbox = document.querySelector('input[value="identificacao"]');
-  var distCheckbox = document.querySelector('input[value="distancia"]');
+  var detecCheckbox = document.querySelector('input[name="deteccao"]');
+  var classCheckbox = document.querySelector('input[name="classificacao"]');
+  var reconCheckbox = document.querySelector('input[name="reconhecimento"]');
+  var identCheckbox = document.querySelector('input[name="identificacao"]');
+  //var distCheckbox = document.querySelector('input[value="distancia"]');
 
 
   function trianguloD(){

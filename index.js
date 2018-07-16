@@ -34,16 +34,18 @@ $(function() {
     var sensor = Number($(this).attr("sensor").replace(",",".")); 
     var angulo = Number($(this).attr("angulo").replace(",",".")); 
 
+    $('#row-reconhecimento').removeClass('hidden');
     $('#gerarproposta').removeClass('disabled');
     draw(largura, profundidade, distancia, resolucao, lente, sensor, angulo);
 
-    $('#row-reconhecimento').removeClass('hidden');
+    
     
     //$('#formprincipal').submit()
   });
 
  $('.btn-proposta').click(function(){
     alert('Função ainda não disponível. Será desenvolvida em breve. Desculpe o transtorno.');
+
  }); 
  $('#gerarproposta').click(function(){
     $("#propostacomercial").removeClass("hidden");
@@ -83,7 +85,7 @@ $(function() {
       data: data,
       success: function(data) {
         $("#dadosCameraSelecinoada").html(
-          data["texto"] + "<br><i>Aqui você pode visualizar o ângulo de cobertura de cada câmera selecionada. Após escolher a câmera você ainda pode gerar uma proposta para seu cliente.</i>"
+          data["texto"] + "<br><span class='textoexplicativo'>Aqui você pode visualizar o ângulo de cobertura de cada câmera selecionada. Após escolher a câmera você ainda pode gerar uma proposta para seu cliente.</span>"
         );
 
         //alert("Form submitted successfully.\nReturned json: " + data["json"]);
