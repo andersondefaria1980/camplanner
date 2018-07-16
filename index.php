@@ -279,8 +279,11 @@
                 </div>
                 <div class="form-group hidden" id="row-reconhecimento">
             
-                    <label class="control-label col-sm-3 " for="grau-reconhecimento" >Selecione o grau de reconhecimento apresentado:</label>
+                    <label class="control-label col-sm-2 " for="grau-reconhecimento" >Grau de Reconhecimento:</label>
                     
+                    <div class="col-sm-1">
+                        <a href="#" class="btn btn-primary btn-sm" data-toggle="collapse" id="exp-rec">?</a>
+                    </div>
                     <!--<span data-toggle="tooltip" title="DCRI" class="glyphicon glyphicon-question-sign" alt="asdfsa" ></span>-->
                     
                     <div class="col-sm-2">
@@ -305,6 +308,21 @@
                         </div>
                     </div>
             
+                </div>
+                <div class="form-group hidden colapse textoexplicativo" id="row-explicacao-reconhecimento">
+                    
+                    <div class="col-sm-10">
+                    
+
+                        <b>DCRI:</b> 
+                            <br/><b> - Detecção: </b> é tudo que é possível ver na imagem.
+
+                            <br/><b> - Classificação: </b> é quando é possível distinguir entre humano, animal e objeto o que está na imagem. 
+
+                            <br/><b> - Reconhecimento: </b> é quando é possível identificar cores/tipos de vestimentas e se existe algum objeto com a pessoa. Nesse grau é possível reconhecer a pessoa se você já conhece ela.
+
+                            <br/><b> - Identificação: </b> é quando você consegue visualizar claramente o rosto da pessoa a ponto de lembrar caso não a conheça a pessoa.
+                  </div>
                 </div>
                 
                 <canvas id="canvas" width="1000" height="1000"></canvas>

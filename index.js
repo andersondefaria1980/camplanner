@@ -19,6 +19,15 @@ $(function() {
   //$('#profundidade').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   //$('#distancia').maskMoney({ decimal: ',', thousands: '', precision: 2 });
   
+  $('#exp-rec').click(function(){
+    if($('#row-explicacao-reconhecimento').hasClass("hidden")){
+      $('#row-explicacao-reconhecimento').removeClass("hidden");
+    }else{
+      $('#row-explicacao-reconhecimento').addClass("hidden");
+    }
+    
+  });
+
   $('.camera').click(function(){
     $('#cameraselecionada').val($(this).attr("value"));
     $('#cameraselecionadanome').val($(this).attr("nomecamera"));
