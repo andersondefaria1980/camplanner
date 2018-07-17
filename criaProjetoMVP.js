@@ -243,6 +243,12 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
     //var distanciaDoClique = parseFloat((calc1).toFixed(2));
 
     alert("x: "+cx+" y: "+cy);
+     //Distância do clique até a câmera
+    //alert("Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera");
+    //var texto = "Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera"
+    //document.getElementById("msg-distancia").innerHTML = texto;
+   // document.getElementById("row-distancia").classList.remove('hidden');
+   
   }
 
   //triangulo de mudança de direção
@@ -298,6 +304,7 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
     ctx.rotate((360-n)*rotacionar);
     criaPlanta(); 
     desenhaImagem();
+
   }
 
   limpaArea();

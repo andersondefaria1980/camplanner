@@ -324,6 +324,13 @@
                             <br/><b> - Identificação: </b> é quando você consegue visualizar claramente o rosto da pessoa a ponto de lembrar caso não a conheça a pessoa.
                   </div>
                 </div>
+                <div class="form-group hidden" id="row-distancia">
+                    <div class="col-sm-10">
+                        <div class="alert alert-info col-sm-10" id="msg-distancia">
+                            Clique na imagem para saber a distância da câmera...
+                        </div>
+                    </div>
+                </div>
                 
                 <canvas id="canvas" width="1000" height="1000"></canvas>
                 <br><br><br>

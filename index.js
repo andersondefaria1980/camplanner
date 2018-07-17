@@ -75,7 +75,10 @@ $(function() {
       $(this).removeClass("negrito");
     });
     element.addClass("negrito");
-    //$('#imagemprojeto').hide();
+
+    $('#row-distancia').removeClass("hidden");
+    $('#msg-distancia').html("Clique na imagem para saber a distância da câmera...");
+//document.getElementById("msg-distancia").innerHTML = texto;
 
     atualizaDadosCamera(element.attr("value"));
   }
