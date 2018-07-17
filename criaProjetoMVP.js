@@ -1,20 +1,21 @@
-function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.36, sensor=0.25, angulo=80.36) {
+function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.47, lentemin=0.47 ,sensor=0.25, 
+  angulo=59, angulomin = 59) {
+
   console.log("resolucao: " + resolucao);
   console.log("lente: " + lente);
   console.log("sensor: " + sensor);
   console.log("angulo: " + angulo);
 
   var canvas = document.getElementById("canvas");
-
-  //EventListener do click do mouse
-  canvas.addEventListener('mousedown', onDown, false);
-  
   var ctx = canvas.getContext("2d");
   var imgCam = new Image();
 
   //COORDENADAS PONTA ESQUERDA SUPERIOR ÁREA
   var x = 80;
   var y = 80; 
+
+  //rotacionando
+  var rotacionar = Math.PI/180;
 
   //valores fixos do DCRI
   var percentD = 0.05;
@@ -25,13 +26,18 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
   //informação que o usuário irá inserir
   var larg = largura;
   var prof = profundidade;
-  var dist = distancia; 
+  var dist = distancia;   
+  var mudarAbertura = 100;
 
   //informações que será pego do BD
   var resolucao = resolucao;
   var lente = lente;
+  var lentemin = lentemin;
   var sensor = sensor;
   var ang = angulo;
+  var angmin = angulomin;
+  var angRef = angmin;
+  var angRef2 = ang;
 
   //borda canvas
   ctx.strokeStyle = "rgba(0,0,0)";
@@ -52,8 +58,12 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
   var classCheckbox = document.querySelector('input[name="classificacao"]');
   var reconCheckbox = document.querySelector('input[name="reconhecimento"]');
   var identCheckbox = document.querySelector('input[name="identificacao"]');
-  //var distCheckbox = document.querySelector('input[value="distancia"]');
 
+  //EventListener do MOUSE e BOTÕES
+  canvas.addEventListener('mousedown', onDown, false);
+  document.getElementById("rotDir").addEventListener("click", rotDir);
+  document.getElementById("rotEsq").addEventListener("click", rotEsq);
+  document.getElementById("mAbertura").onchange = function() {alteraAbertura()}
 
   function trianguloD(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
@@ -194,64 +204,100 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1280, lente=0.3
     desenhaImagem();
   }
 
+  function alteraAbertura(){
+    mudarAbertura = document.getElementById("mAbertura").value;
 
-  //mudando de posição pelo clique
-  //*****ARRUMAR PARTE DE MUDAR DE COR POR CLIQUE, COORDENADAS NÃO ESTÃO CORRETAS PELO CLIQUE
-  function onDown(event){
-    cx = event.pageX;
-    cy = event.pageY;
+      if(ang == angmin && lente == lentemin){
+        alert("Câmera com lente fixa.");
+      }    
 
-    var calc1 = ((Math.sqrt(Math.pow(cx-x,2)+Math.pow(cy-y,2)))/10).toFixed(2);
-    var calc2 = calc1 - 9;
-    var distanciaDoClique = parseFloat(calc2.toFixed(2));
-
-    //removendo triângulo
-    //limpaArea();
-
-    //Cálculo distância da câmera
-      var largObj1 = (resolucao/(300*percentD));
-      var distT1 = (largObj1*b*0.7); 
-
-      var largObj2 = (resolucao/(300*percentC));
-      var distT2 = (largObj2*b*0.7); 
-
-      var largObj3 = (resolucao/(300*percentR));
-      var distT3 = (largObj3*b*0.7); 
-
-      var largObj4 = (resolucao/(300*percentI));
-      var distT4 = (largObj4*b*0.7); 
-
-
-    //**arrumar isso aqui
-      if(distanciaDoClique  <= distT4){
-        ctx.fillStyle = "red"
-        var distTF = distT4;
-      }else if(distanciaDoClique > distT4 && distanciaDoClique <= distT3){
-        ctx.fillStyle = "yellow"
-        var distTF = distT3;
-      }else if(distanciaDoClique > distT3 && distanciaDoClique <= distT2){ 
-        ctx.fillStyle = "green"
-        var distTF = distT2;
+      if(mudarAbertura > 100 || mudarAbertura < 0){
+        alert("A abertura deve ser em percentual entre 0 e 100, sendo o padrão 100(máximo de abertura).");
       }else{
-        ctx.fillStyle = "blue"
-        var distTF = distT1;
+        var novalente = (lentemin - lente)/100;
+        var lente2 = lentemin - (novalente*mudarAbertura);
+        b = lente2/sensor;
+
+        var parteAngulo = (angRef2 - angmin)/100;
+
+        ang = angRef + (parteAngulo*mudarAbertura);
+
+        limpaArea();
+        trianguloD();
+        trianguloC();
+        trianguloR();
+        trianguloI();
+        criaPlanta();
+        desenhaImagem();
+
       }
 
+  }
 
-    /*var catAdjA_F = parseFloat(distTF.toFixed(2)) *10; //cateto adjacente de A
-    var varAngularF = (45 - ang/2)/45;
-    var varAngularFinalF = (catAdjA_F*varAngularF)/2;
 
-    var novoX = cx-10-(x+varAngularFinalF);
-    var novoY = cy-90-(y+catAdjA_F - varAngularFinalF);
-  
+  function onDown(event){
+    cx = event.clientX - 8;
+    cy = event.clientY - 152;
+
+    var calc1 = ((Math.sqrt(Math.pow(cx-x,2)+Math.pow(cy-y,2)))/10).toFixed(2);
+    //var distanciaDoClique = parseFloat((calc1).toFixed(2));
+
+    alert("x: "+cx+" y: "+cy);
+  }
+
+  //triangulo de mudança de direção
+    var n = 0;
+    var largObjC = (resolucao/(300*percentC));
+    var distTC = (largObjC*b*0.7); 
+    var catAdjA_C = parseFloat(distTC.toFixed(2)) *10; //cateto adjacente de A
+    ctx.fillStyle = "rgba(0,0,0,0.5)"
+    ctx.font = "bold 10px Time New Roman";
+    ctx.fillText("Distância máxima de Classificação: "+parseFloat(distTC.toFixed(2))+" m", 10,20);  
+    var varAngularC = (45 - ang/2)/45;
+    var varAngularFinalC = (catAdjA_C*varAngularC)/2;
+
+  //FUNÇÃO BOTÃO CLICADO PARA MUDA A ANGULAÇÃO HORÁRIA
+  function rotDir() {
+    n+=10;
+
+    ctx.clearRect(0, 0, 1000, 1000);
+
+    ctx.fillStyle = "lime"
     ctx.beginPath();
     ctx.moveTo(x,y);
-    ctx.lineTo(cx-10, cy-90);
-    ctx.lineTo(x+varAngularFinalF, y+catAdjA_F - varAngularFinalF);
-    ctx.lineTo(x+catAdjA_F - varAngularFinalF+novoX, y+varAngularFinalF-novoY); 
-    ctx.fill();*/
-  
+    ctx.translate(0,0);
+    ctx.rotate(n*rotacionar);
+    ctx.lineTo(x+varAngularFinalC, y+catAdjA_C - varAngularFinalC);
+    //parte de cima (tamanho, angulação)
+    ctx.lineTo(x+catAdjA_C - varAngularFinalC, y+varAngularFinalC);
+
+    ctx.fill();
+
+    ctx.rotate((360-n)*rotacionar);
+    criaPlanta(); 
+    desenhaImagem();
+  }
+
+  //FUNÇÃO BOTÃO CLICADO PARA MUDA A ANGULAÇÃO ANTI HORÁRIA
+  function rotEsq() {
+    n-=10;
+
+    ctx.clearRect(0, 0, 1000, 1000);
+    
+    ctx.fillStyle = "lime"
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.translate(0,0);
+    ctx.rotate(n*rotacionar);
+    ctx.lineTo(x+varAngularFinalC, y+catAdjA_C - varAngularFinalC);
+    //parte de cima (tamanho, angulação)
+    ctx.lineTo(x+catAdjA_C - varAngularFinalC, y+varAngularFinalC);
+
+    ctx.fill();
+
+    ctx.rotate((360-n)*rotacionar);
+    criaPlanta(); 
+    desenhaImagem();
   }
 
   limpaArea();
