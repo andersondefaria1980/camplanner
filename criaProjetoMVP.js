@@ -1,12 +1,12 @@
 function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.47, lentemin=0.47 ,sensor=0.25, 
   angulo=59, angulomin = 59) {
 
-  console.log("resolucao: " + resolucao);
+  /*console.log("resolucao: " + resolucao);
   console.log("lente: " + lente);
   console.log("lentemin: " + lentemin);
   console.log("sensor: " + sensor);
   console.log("angulo: " + angulo);
-  console.log("angulomin: " + angulomin);
+  console.log("angulomin: " + angulomin);*/
 
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -66,8 +66,9 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
   canvas.addEventListener('mousedown', onDown, false);
   document.getElementById("rotDir").onclick = function(){rotDir()};
   document.getElementById("rotEsq").onclick = function(){rotEsq()};
-  document.getElementById("mAbertura").onkeyup = function() {alteraAbertura()}
-  document.getElementById("mAbertura").onchange = function() {alteraAbertura()}
+  //document.getElementById("mAbertura").onkeyup = function() {alteraAbertura()}
+  document.getElementById("lenteC").onchange = function() {alteraAbertura()}
+
 
   function trianguloD(){
     //Cálculo distância da câmera para IDENTIFICAÇÃO
@@ -209,22 +210,18 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
   }
 
   function alteraAbertura(){
-    mudarAbertura = document.getElementById("mAbertura").value;
+    var lenteC = document.getElementById("lenteC").value;
+    console.log(lenteC, lente, lentemin);
+    var mudarAbertura = (100 *((lenteC/10)-lente))/(lentemin-lente); 
 
-      /*if(ang == angmin && lente == lentemin){
-        alert("Câmera com lente fixa.");
-      } */   
-
-      if(mudarAbertura > 100 || mudarAbertura < 0){
-        alert("A abertura deve ser em percentual entre 0 e 100, sendo o padrão 100(máximo de abertura).");
-      }else{
-        var novalente = (lentemin - lente)/100;
-        var lente2 = lentemin - (novalente*mudarAbertura);
+      //console.log(mudarAbertura);
+        var lente2 = lenteC/10;
         b = lente2/sensor;
 
         var parteAngulo = (angRef2 - angmin)/100;
 
-        ang = angRef + (parteAngulo*mudarAbertura);
+        ang = angRef2 - (parteAngulo*mudarAbertura);
+       // console.log(ang, parteAngulo);
 
         limpaArea();
         trianguloD();
@@ -234,20 +231,20 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
         criaPlanta();
         desenhaImagem();
 
-      }
+      
 
   }
 
 
   function onDown(event){
-    cx = event.clientX - 8;
-    cy = event.clientY - 152;
+    cx = event.clientX - 301;
+    cy = event.clientY - 180;
 
     var calc1 = ((Math.sqrt(Math.pow(cx-x,2)+Math.pow(cy-y,2)))/10).toFixed(2);
     //var distanciaDoClique = parseFloat((calc1).toFixed(2));
     var distanciaDoClique = parseFloat((calc1));
 
-    //alert("x: "+cx+" y: "+cy);
+   // console.log("x: "+cx+" y: "+cy + " distanciaÇ " + calc1);
      //Distância do clique até a câmera
     //alert("Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera");
     //var texto = "Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera"

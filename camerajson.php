@@ -37,11 +37,13 @@ function test_function(){
 
 function getTextoCamera($c){
 
+$lmax = ($c['lentemaximo'])*10;
+$lmin = ($c['lenteminimo'])*10;
   $texto = "";
   foreach ($c as $key => $value) {
     $texto .= "{$key}:{$value}; ";
   }
-  $texto = "Câmera: <b>{$c['modelo']} / {$c['tipo']}" . (($c["ip"])?" / IP":"") . (($c["analogica"])?" / Analógica":"") . "</b>";
+  $texto = "Câmera: <b>{$c['modelo']} / {$c['tipo']}" . (($c["ip"])?" / IP":"") . (($c["analogica"])?" / Analógica":"") . " / Lente: Mínima({$lmax}mm) Máxima({$lmin}mm)</b>";
   return $texto;
 
 }

@@ -67,29 +67,37 @@
 <div class="container" style="padding-top: 15px">
     
     <form class="form-horizontal" id="formprincipal" action="index.php" method="post">
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="largura" >Largura (metros):</label>
+        <div class="form-group passo1">
             <div class="col-sm-1">
-                <input type="number" step="1" min="0" max="999" class="form-control number" id="largura" placeholder="0" name="largura" value="<?=$largura?>">
+                <span class="btn-basic btn right"  for="largura" >PASSO 1</label>
+            </div>
+            <label class="control-label col-sm-3"  for="largura" >Largura do ambiente (metros):</label>
+            <div class="col-sm-1">
+                <input style="width:65px !important" type="number" step="1" min="0" max="999" class="form-control number" id="largura" placeholder="0" name="largura" value="<?=$largura?>">
             </div>
            <!-- <label class="control-label col-sm-2" for="largura">Comprimento (metros):</label>
             <div class="col-sm-1">
                 <input type="money" class="form-control number" id="comprimento" placeholder="0,00" name="comprimento" value="<?=$comprimento?>">
             </div> --> 
 
-            <label class="control-label col-sm-2" for="profundidade">Profundidade (metros):</label>
+            <label class="control-label col-sm-3" for="profundidade">Profundidade do ambiente (metros):</label>
             <div class="col-sm-1">
-                <input type="number" step="1" min="0" max="999" class="form-control number" id="profundidade" placeholder="0" name="profundidade" value="<?=$profundidade?>">
+                <input style="width:65px !important" type="number" step="1" min="0" max="999" class="form-control number" id="profundidade" placeholder="0" name="profundidade" value="<?=$profundidade?>">
             </div>
 
-            <label class="control-label col-sm-2" for="distancia-grau-reconhecimento" >Distância Grau de Reconhecimento:</label>
+            <!--<label class="control-label col-sm-2" for="distancia-grau-reconhecimento" >Distância Grau de Reconhecimento:</label>
             <div class="col-sm-1">
                 <input type="number" step="1" min="0" max="999" class="form-control number" id="distancia" placeholder="0" name="distancia" value="<?=$distancia?>">
             </div>
             <div class="col-sm-1">
               <a href="#demo" class="btn btn-primary btn-sm" data-toggle="collapse">?</a>
             </div>
-
+-->
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-1">
+                <span class="btn-primary btn right proximo"  for="largura" id="proximo1">Próximo</label>
+            </div>
            
         </div>
 
@@ -113,9 +121,12 @@
       
 
       
-        <div class="form-group">
+        <div class="form-group passo2 hidden">
+            <div class="col-sm-1">
+                <span class="btn-basic btn right"  for="largura" >PASSO 2</label>
+            </div>
             <label class="control-label col-sm-2" for="tipo">Tipo de Câmera:</label>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 <div class="checkbox">
                     <label><input type="checkbox" name="ip" <?=$ip?>>IP</label>
                 </div>
@@ -125,10 +136,18 @@
                     <label><input type="checkbox" name="analogica" <?=$analogica?>>Analógica</label>
                 </div>
             </div>
+            <div class="col-sm-5">
+            </div>
+            <div class="col-sm-1">
+                <span class="btn-primary btn right proximo"  for="largura" id="proximo2">Próximo</label>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="tipo">Características:</label>
+        <div class="form-group passo3 hidden">
+            <div class="col-sm-1">
+                <span class="btn-basic btn right"  for="largura" >PASSO 3</label>
+            </div>
+            <label class="control-label col-sm-2" for="tipo">Características desejáveis:</label>
             <div class="col-sm-2">
                 <div class="checkbox">
                     <label><input type="checkbox" name="deteccaodemovimento" <?=$deteccaodemovimento?>>Detecção de Movimento</label>
@@ -149,8 +168,14 @@
                     <label><input type="checkbox" name="reconhecimentodeplaca" <?=$reconhecimentodeplaca?>>Reconhecimento de Placa</label>
                 </div>
             </div>
+
+            <div class="col-sm-1">
+                <span class="btn-primary btn right proximo"  for="largura" id="proximo3">Próximo</label>
+            </div>
         </div>
-        <div class="form-group">
+        <div class="form-group passo3 hidden">
+            <div class="col-sm-1">
+            </div>
             <label class="control-label col-sm-2" for="tipo"></label>
             <div class="col-sm-2">
                 <div class="checkbox">
@@ -167,13 +192,15 @@
                     <label><input type="checkbox" name="abandonodeobjeto" <?=$abandonodeobjeto?>>Abandono de Objeto</label>
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2 ">
                 <div class="checkbox">
                     <label><input type="checkbox" name="retiradadeobjeto" <?=$retiradadeobjeto?>>Retirada de Objeto</label>
                 </div>
             </div>
         </div>
-          <div class="form-group">
+          <div class="form-group passo3 hidden">
+            <div class="col-sm-1">
+            </div>
             <label class="control-label col-sm-2" for="tipo"></label>
             <div class="col-sm-2">
                 <div class="checkbox">
@@ -187,15 +214,22 @@
             </div>
         </div>
         <br>
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-3"  >
+        <div class="form-group passo4 hidden">
+            <div class="col-sm-1">
+                <span class="btn-basic btn right"  for="largura" >PASSO 4</label>
+            </div>
+            <div class="col-sm-2">
                 <a href="index.php">
-                   <button type="button" value="limpar" class="btn btn-default">Limpar Dados</button>
+                   <button style="float:right;" type="button" value="limpar" class="btn btn-default ">Limpar Dados</button>
                 </a>
             </div>
-            <div class="col-sm-6"  >
-                <button type="submit" id="dimensionar" value="dimensionar" class="btn btn-primary">Dimensionar Projeto</button>
+            <div class="col-sm-7">
+                <span class="textoexplicativo">Agora que você seleciou as características você pode dimensionar seu projeto clicando no botão ao lado...</span>
             </div>
+            <div class="col-sm-2" >
+                <button type="submit" style="float: right;" id="dimensionar" value="dimensionar" class="btn btn-primary">Dimensionar Projeto</button>
+            </div>
+            
         </div>
         <input type="hidden" id="cameraselecionada" name="cameraselecionada" value="<?=$cameraselecionada?>">
         <input type="hidden" id="cameraselecionadanome" name="cameraselecionadanome" value="<?=$cameraselecionadanome?>">
@@ -230,20 +264,23 @@
     //$largura = $_POST['largura'];
     //$profundidade = $_POST['profundidade'];
 
-
     $service = new CameraService();
     $cameras = $service->getCameras($caracteristicas, $graureconhecimento, $largura, $profundidade);
 
      ?>
-      <div class="titulo" id="seuprojeto">
+        <div class="titulo" id="seuprojeto">
             <div class="container">
                 <h2>Seu Projeto</h2>
             </div>
-         </div>
+        </div>
         <div class="container" style="padding-top: 15px">
             <div class="row">
             <div class="col-sm-2"   ">
-                <div class="row" style="height: 30px;font-weight: bold">Câmeras Encontradas</div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <span class="btn-basic btn right"  for="largura" >PASSO 5</label>
+                    </div>
+                </div>
                 <?php foreach ($cameras as $c){ ?>
                         <div class="row">
                             <span class="camera <?=($cameraselecionada==$c["id"])?"negrito":""?>" 
@@ -271,6 +308,7 @@
                             Não encontramos nenhuma câmera com a combinação de características selecionadas.
                         <?php } ?> 
                     </div>
+                    <div class="col-sm-2" ></div>
                     <div class="col-sm-2" >
                         <button type="submit" id="gerarproposta" value="gerarproposta" class="btn btn-primary disabled">Gerar Proposta</button>
                     </div>
@@ -323,15 +361,20 @@
                             <br/><b> - Identificação: </b> é quando você consegue visualizar claramente o rosto da pessoa a ponto de lembrar caso não a conheça a pessoa.
                     </div>
                 </div>
-                <div class="row hidden" id="row-angulo-abertura">
-                    <label class="control-label col-sm-2" >Percentual ângulo abertura:</label>
+                <div class="row hidden" id="row-angulo-abertura" style="margin-bottom: 15px">
+                    <!--<label class="control-label col-sm-2" >Percentual ângulo abertura:</label>
                     <div class="col-sm-1">
                         <input class="form-control" style="width:65px !important" type="number" name="abertura" id="mAbertura" min="0" maxlength="100" step="1" value="100">
                     </div>
                     <div class="col-sm-1" style="padding-top: 7px;margin-left: -13px;font-weight: bold; width: 50px">
                         %
                     </div>
-                   <div class="col-sm-3" id="alerta-camera-fixa" style="margin-left: -13px; font-style: italic;">
+                -->
+                <label class="control-label col-sm-2">Lente:</label>
+                    <div class="col-sm-1">
+                        <input class="form-control" style="width:70px !important" type="number" name="lenteC" id="lenteC" min="0" max="100" maxlength="5" step="0.1">
+                    </div>
+                   <div class="col-sm-3" id="alerta-camera-fixa" style=" font-style: italic;">
                         Câmera com lente Fixa não pode variar o ângulo de abertura!
                    </div>
                    <div class="col-sm-2" >
@@ -348,14 +391,19 @@
                     </div>
                 </div>
                 
-                <canvas id="canvas" width="1000" height="1000"></canvas>
+                <canvas class="hidden" id="canvas" width="1000" height="1000"></canvas>
                 <br><br><br>
             </div>
         </div>
         
 
         <script>
-            $(document).scrollTop( $("#seuprojeto").offset().top );
+             $('.passo2').removeClass('hidden');
+             $('.passo3').removeClass('hidden');
+             $('.passo4').removeClass('hidden');
+             $('.proximo').addClass('hidden');
+             $(document).scrollTop( $("#seuprojeto").offset().top );
+
         </script>
 
     </div>
@@ -365,23 +413,28 @@
         <div class="container">
             <h2>Proposta Comercial</h2>
         </div>
+        <!--</div class="container row">
+            <div class="col-sm-1">
+                <span class="btn-basic btn right"  for="largura" >PASSO 6</label>
+            </div>
+        <div>-->
     </div>
-    <div id="dadosproposta"  class="container hidden">
-        <hr>
-        
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque viverra felis ac sem mollis finibus. Aliquam sit amet mollis leo. Phasellus suscipit, nisi vitae dictum egestas, ante risus viverra nibh, at tincidunt massa sapien sit amet libero. Cras ut vulputate massa. Nulla consectetur suscipit tellus. Morbi non porttitor risus, et tristique massa. Cras semper eros magna, at dapibus mi sodales ut. Suspendisse arcu ipsum, tincidunt pretium congue vitae, venenatis mattis felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent vel magna tristique, tempus quam eget, vulputate lacus. Etiam risus ipsum, malesuada vitae nisl non, venenatis tincidunt neque.
-
-        Morbi accumsan nunc ut velit dignissim tincidunt. Morbi ac mauris elit. Ut id enim interdum, egestas turpis et, condimentum lectus. Aliquam erat volutpat. Cras quis pretium nibh. Nullam gravida hendrerit consequat. Aliquam rutrum dui fermentum purus efficitur fermentum. Duis vitae leo dictum, posuere orci et, tincidunt lacus.
-
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam iaculis accumsan metus, eu laoreet ipsum feugiat sit amet. Suspendisse lorem neque, tincidunt vitae mauris nec, feugiat ultrices nunc. Praesent pulvinar vitae eros a accumsan. Fusce tristique ex vel nulla congue, vel molestie lacus aliquet. Mauris at volutpat leo. Fusce nec tempus dolor. Mauris quis auctor sapien, tempus tincidunt nibh.
-
-        Mauris et arcu ultricies ipsum vulputate semper id vel mauris. Curabitur sed dolor eget dolor accumsan dignissim. Phasellus vestibulum leo eget efficitur rutrum. Mauris elementum lorem ligula, eget rhoncus odio laoreet vel. Pellentesque dictum finibus nunc, a volutpat sapien tristique ut. Cras id nibh nec nulla fringilla convallis eu et elit. Duis tristique auctor nunc quis fermentum. Donec dignissim leo ipsum, et dictum arcu eleifend vel. Cras dapibus posuere nisi, sit amet sagittis nulla interdum at. Vestibulum blandit nisl eu tortor tempus, in varius dui convallis. Integer at auctor orci. Donec porta risus quis commodo tempor. Pellentesque nec elementum felis, a tempor massa. Nam vehicula, elit vitae fermentum accumsan, erat lacus euismod libero, vitae egestas felis sem non elit. Integer consectetur facilisis ante, vitae lobortis arcu auctor sed.
-
-        Integer eget eros fringilla, aliquet purus sit amet, suscipit risus. Aenean non ante at sapien varius commodo. Vivamus egestas neque ac tellus gravida, sed fringilla tortor eleifend. Fusce nulla nisi, gravida ac est a, bibendum porttitor neque. Mauris mattis, nibh et accumsan finibus, nulla ipsum bibendum libero, ac tempus mi sapien vel nunc. In ipsum metus, efficitur at rutrum vehicula, bibendum vitae risus. Maecenas commodo erat nec libero dignissim imperdiet. Nam et sem ut urna convallis sodales. Donec tincidunt feugiat augue, at accumsan enim convallis non. Mauris sagittis tellus eu nulla luctus pellentesque at quis odio.
-
-        
+    <div class="container hidden" id="passo6" style="padding-top: 15px">
+            <div class="row">
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <span class="btn-basic btn right"  for="largura" >PASSO 6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="botoesproposta"  class="container hidden">
+
+    <div id="dadosproposta"  class="container hidden">    
+    </div>
+
+    <div id="botoesproposta"  class="container hidden" style="text-align: right;">
         <hr>
         <button type="submit" id="gerarpdf" value="gerarpdf" class="btn btn-danger btn-proposta">Gerar PDF</button>
         <button type="submit" id="gerarword" value="gerarword" class="btn btn-primary btn-proposta">Gerar WORD</button>
@@ -396,7 +449,7 @@
     <form id="formprincipal" action="faleconosco.php" method="post">
         <div class="form-group">
             <div class="col-sm-2"></div>
-            <div class="col-sm-8">A Camplanner é uma startup formada por colaboradores Intelbras. Nosso objetivo é disponibilizar um software e aplicativo para auxiliar o dimensionamento de projetos de segurança. Envie críticas, sujestões e dúvidas clicando no botão "Fale conosco".</div>
+            <div class="col-sm-8">A Camplanner é uma startup formada por colaboradores Intelbras. Envie críticas, sujestões e dúvidas clicando no botão "Fale conosco". <b>Seja um dos primeiros a receber nossa novidades. Informe PRE-COMPRA no assunto se você tem interesse!</b></div>
             <div class="col-sm-2">
                 <button type="submit" id="faleconosco" value="faleconosco" class="btn btn-warning">Fale conosco</button>
             </div>

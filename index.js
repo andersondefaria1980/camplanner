@@ -28,7 +28,23 @@ $(function() {
     
   });
 
+   $('#proximo1').click(function(){
+    $('.passo2').removeClass('hidden');
+    $(this).addClass('hidden');
+   });
+
+  $('#proximo2').click(function(){
+    $('.passo3').removeClass('hidden');
+    $(this).addClass('hidden');
+   });
+
+$('#proximo3').click(function(){
+    $('.passo4').removeClass('hidden');
+    $(this).addClass('hidden');
+   });
+
   $('.camera').click(function(){
+
     $('#cameraselecionada').val($(this).attr("value"));
     $('#cameraselecionadanome').val($(this).attr("nomecamera"));
 
@@ -36,7 +52,8 @@ $(function() {
     selecionarCamera($(this));
     var largura = Number($('#largura').val().replace(",",".")); 
     var profundidade = Number($('#profundidade').val().replace(",",".")); 
-    var distancia = Number($('#distancia').val().replace(",",".")); 
+    //var distancia = Number($('#distancia').val().replace(",",".")); 
+    var distancia = 0;
 
     var resolucao = Number($(this).attr("resolucao").replace(",",".")); 
     var lentemax = Number($(this).attr("lentemax").replace(",",".")); 
@@ -49,18 +66,25 @@ $(function() {
     $('#row-angulo-abertura').removeClass('hidden');
     $('#gerarproposta').removeClass('disabled');
 
-    $("#mAbertura").val(100);
+    var lmin = parseFloat((Number($(this).attr("lentemax"))*10)).toFixed(2);
+    var lmax = parseFloat((Number($(this).attr("lentemin"))*10)).toFixed(2);
+
+//console.log(lmin + " - " + lmax);
+    $("#lenteC").val(lmin);
     if(angulomax == angulomin && lentemin == lentemax){
       $('#alerta-camera-fixa').removeClass('hidden');
-      $("#mAbertura").prop('disabled', true);
+      $("#lenteC").prop('disabled', true);
     }else{
       $('#alerta-camera-fixa').addClass('hidden');
-      $("#mAbertura").prop('disabled', false);
+      $("#lenteC").prop('disabled', false);
+      $("#lenteC").attr('max',lmax);
+      $("#lenteC").attr('min',lmin);
     }
+    $('#canvas').removeClass('hidden');
 
     draw(largura, profundidade, distancia, resolucao, lentemax, lentemin, sensor, angulomax, angulomin);
     
-    //$('#formprincipal').submit()
+    $(document).scrollTop( $("#seuprojeto").offset().top );
   });
 
  $('.btn-proposta').click(function(){
@@ -69,10 +93,13 @@ $(function() {
  }); 
  $('#gerarproposta').click(function(){
     $("#propostacomercial").removeClass("hidden");
+    $("#passo6").removeClass("hidden");
     $("#dadosproposta").removeClass("hidden");
     $("#botoesproposta").removeClass("hidden");
-    $(document).scrollTop( $("#propostacomercial").offset().top );
     atualizaDadosProposta($('#cameraselecionada').val());
+    console.log($("#propostacomercial").offset().top);
+    $(document).scrollTop( $("#propostacomercial").offset().top );
+    
   });
   $('#dimensionar').click(function(){
   	$('#cameraselecionada').val("");
@@ -131,7 +158,7 @@ $(function() {
       data: data,
       success: function(data) {
         var texto = data["texto"];
-        texto = "<br><br>"+ texto + "<br><br> Aqui vai o texto da proposta, campos pra preencher os preços, adicionar logos, produtos, nome do cliente, etc... <br><br><br>";
+        texto = "<br><br>"+ texto + "<br> Você poderá adicionar quantas câmeras quiser em seu projeto.<br><br> Aqui você poderá editar o texto da proposta montando da melhor maneira que desejar para atender as necessidades do seu cliente. Você poderá: <ul><li> Editar os campos para preencher os preços adicionar logo da sua empresa</li><li>Descrever os produtos e instalação</li><li>Adicionar o nome do cliente</li><li>Informar o prazo de validade da proposta</li><li>Incluir opções de valores</li><li>Personalisar cada proposta de acordo com o seu cliente</li></ul><br><br><br>";
         //texto += "<br /> Aqui vai o texto da proposta".
         $("#dadosproposta").html(texto);
       }

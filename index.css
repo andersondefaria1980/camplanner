@@ -19,6 +19,10 @@ body{
       background-color: white;
  }
 
+.btn-basic{
+	background-color: #e7e7e7;
+}
+
 
  .titulo{
  	background-color: #e7e7e7;
@@ -31,6 +35,8 @@ body{
  }
 
  .footer{
+ 	margin-top: 30px;
+ 	margin-bottom: 10px;
  	height: 70px;
  }
  .textoexplicativo{

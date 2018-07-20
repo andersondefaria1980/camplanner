@@ -16,7 +16,7 @@
         $dbh  = new PDO($dir) or die("cannot open the database");
         $query =  "SELECT * FROM cameras WHERE 1=1";
         foreach ($caracteristicas as $c => $a)
-            if(!empty($a)) $query .= " AND ($c = $a)";
+            if(!empty($a)) $query .= " OR ($c = $a)";
         //echo $query;die;
         $cameras = [];
         $lista = $dbh->query($query);
