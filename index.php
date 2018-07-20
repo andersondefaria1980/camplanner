@@ -252,9 +252,11 @@
                                   id="camera_<?=$c["id"]?>" 
                                   value="<?=$c["id"]?>"
                                   resolucao="<?=$c["resolucaomaxima"]?>"
-                                  lente="<?=$c["lentemaximo"]?>"
+                                  lentemax="<?=$c["lentemaximo"]?>"
+                                  lentemin="<?=$c["lenteminimo"]?>"
                                   sensor="<?=$c["sensor"]?>"
-                                  angulo="<?=$c["angulomaximo"]?>"
+                                  angulomax="<?=$c["angulomaximo"]?>"
+                                  angulomin="<?=$c["angulominimo"]?>"
                             >
                                 <?php echo " - ".$c["modelo"]. " / " . $c["tipo"];?>
                             </span>
@@ -274,15 +276,15 @@
                         <button type="submit" id="gerarproposta" value="gerarproposta" class="btn btn-primary disabled">Gerar Proposta</button>
                     </div>
                 </div>
-                 <div class="row">
+                <div class="row">
                     <hr>
                 </div>
-                <div class="form-group hidden" id="row-reconhecimento">
+                <div class="row hidden" id="row-reconhecimento">
             
                     <label class="control-label col-sm-2 " for="grau-reconhecimento" >Grau de Reconhecimento:</label>
                     
                     <div class="col-sm-1">
-                        <a href="#" class="btn btn-primary btn-sm" data-toggle="collapse" id="exp-rec">?</a>
+                        <span class="btn btn-primary btn-sm" id="exp-rec">?</span>
                     </div>
                     <!--<span data-toggle="tooltip" title="DCRI" class="glyphicon glyphicon-question-sign" alt="asdfsa" ></span>-->
                     
@@ -309,11 +311,9 @@
                     </div>
             
                 </div>
-                <div class="form-group hidden colapse textoexplicativo" id="row-explicacao-reconhecimento">
-                    
-                    <div class="col-sm-10">
-                    
-
+                <div class="row hidden textoexplicativo" id="row-explicacao-reconhecimento">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
                         <b>DCRI:</b> 
                             <br/><b> - Detecção: </b> é tudo que é possível ver na imagem.
 
@@ -322,13 +322,30 @@
                             <br/><b> - Reconhecimento: </b> é quando é possível identificar cores/tipos de vestimentas e se existe algum objeto com a pessoa. Nesse grau é possível reconhecer a pessoa se você já conhece ela.
 
                             <br/><b> - Identificação: </b> é quando você consegue visualizar claramente o rosto da pessoa a ponto de lembrar caso não a conheça a pessoa.
-                  </div>
+                    </div>
                 </div>
-                <div class="form-group hidden" id="row-distancia">
-                    <div class="col-sm-10">
-                        <div class="alert alert-info col-sm-10" id="msg-distancia">
-                            Clique na imagem para saber a distância da câmera...
-                        </div>
+                <div class="row hidden" id="row-angulo-abertura">
+                    <label class="control-label col-sm-2" >Percentual ângulo abertura:</label>
+                    <div class="col-sm-1">
+                        <input class="form-control" style="width:65px !important" type="number" name="abertura" id="mAbertura" min="0" maxlength="100" step="1" value="100">
+                    </div>
+                    <div class="col-sm-1" style="padding-top: 7px;margin-left: -13px;font-weight: bold; width: 50px">
+                        %
+                    </div>
+                   <div class="col-sm-3" id="alerta-camera-fixa" style="margin-left: -13px; font-style: italic;">
+                        Câmera com lente Fixa não pode variar o ângulo de abertura!
+                   </div>
+                   <div class="col-sm-2" >
+                        <button type="button" id="rotDir" value="rotDir" class="btn btn-warning">Rotacionar 10°</button>
+                    </div>
+                    <div class="col-sm-2" >
+                        <button type="button" id="rotEsq" value="rotEsq" class="btn btn-warning">Rotacionar -10°</button>
+                    </div>
+                </div>
+                <div class="row hidden" id="row-distancia">
+
+                    <div class="alert alert-info col-sm-10" id="msg-distancia">
+                        Clique na imagem para saber a distância da câmera...
                     </div>
                 </div>
                 

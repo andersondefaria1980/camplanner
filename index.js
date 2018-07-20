@@ -39,15 +39,26 @@ $(function() {
     var distancia = Number($('#distancia').val().replace(",",".")); 
 
     var resolucao = Number($(this).attr("resolucao").replace(",",".")); 
-    var lente = Number($(this).attr("lente").replace(",",".")); 
+    var lentemax = Number($(this).attr("lentemax").replace(",",".")); 
+    var lentemin = Number($(this).attr("lentemin").replace(",",".")); 
     var sensor = Number($(this).attr("sensor").replace(",",".")); 
-    var angulo = Number($(this).attr("angulo").replace(",",".")); 
+    var angulomax = Number($(this).attr("angulomax").replace(",",".")); 
+    var angulomin = Number($(this).attr("angulomin").replace(",",".")); 
 
     $('#row-reconhecimento').removeClass('hidden');
+    $('#row-angulo-abertura').removeClass('hidden');
     $('#gerarproposta').removeClass('disabled');
-    draw(largura, profundidade, distancia, resolucao, lente, sensor, angulo);
 
-    
+    $("#mAbertura").val(100);
+    if(angulomax == angulomin && lentemin == lentemax){
+      $('#alerta-camera-fixa').removeClass('hidden');
+      $("#mAbertura").prop('disabled', true);
+    }else{
+      $('#alerta-camera-fixa').addClass('hidden');
+      $("#mAbertura").prop('disabled', false);
+    }
+
+    draw(largura, profundidade, distancia, resolucao, lentemax, lentemin, sensor, angulomax, angulomin);
     
     //$('#formprincipal').submit()
   });
@@ -76,8 +87,8 @@ $(function() {
     });
     element.addClass("negrito");
 
-    $('#row-distancia').removeClass("hidden");
-    $('#msg-distancia').html("Clique na imagem para saber a distância da câmera...");
+    //$('#row-distancia').removeClass("hidden");
+    //$('#msg-distancia').html("Clique na imagem para saber a distância da câmera...");
 //document.getElementById("msg-distancia").innerHTML = texto;
 
     atualizaDadosCamera(element.attr("value"));

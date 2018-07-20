@@ -3,8 +3,10 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
 
   console.log("resolucao: " + resolucao);
   console.log("lente: " + lente);
+  console.log("lentemin: " + lentemin);
   console.log("sensor: " + sensor);
   console.log("angulo: " + angulo);
+  console.log("angulomin: " + angulomin);
 
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -50,6 +52,7 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
     ctx.lineWidth = 1;
     ctx.strokeRect(x, y , larg*10, prof*10);
   }
+
   //Calculo distância focal
   var b = lente/sensor;
   
@@ -61,8 +64,9 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
 
   //EventListener do MOUSE e BOTÕES
   canvas.addEventListener('mousedown', onDown, false);
-  document.getElementById("rotDir").addEventListener("click", rotDir);
-  document.getElementById("rotEsq").addEventListener("click", rotEsq);
+  document.getElementById("rotDir").onclick = function(){rotDir()};
+  document.getElementById("rotEsq").onclick = function(){rotEsq()};
+  document.getElementById("mAbertura").onkeyup = function() {alteraAbertura()}
   document.getElementById("mAbertura").onchange = function() {alteraAbertura()}
 
   function trianguloD(){
@@ -207,9 +211,9 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
   function alteraAbertura(){
     mudarAbertura = document.getElementById("mAbertura").value;
 
-      if(ang == angmin && lente == lentemin){
+      /*if(ang == angmin && lente == lentemin){
         alert("Câmera com lente fixa.");
-      }    
+      } */   
 
       if(mudarAbertura > 100 || mudarAbertura < 0){
         alert("A abertura deve ser em percentual entre 0 e 100, sendo o padrão 100(máximo de abertura).");
@@ -241,13 +245,14 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
 
     var calc1 = ((Math.sqrt(Math.pow(cx-x,2)+Math.pow(cy-y,2)))/10).toFixed(2);
     //var distanciaDoClique = parseFloat((calc1).toFixed(2));
+    var distanciaDoClique = parseFloat((calc1));
 
-    alert("x: "+cx+" y: "+cy);
+    //alert("x: "+cx+" y: "+cy);
      //Distância do clique até a câmera
     //alert("Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera");
     //var texto = "Você está à aproximadamente " + (distanciaDoClique+5) + " metros da câmera"
     //document.getElementById("msg-distancia").innerHTML = texto;
-   // document.getElementById("row-distancia").classList.remove('hidden');
+   //document.getElementById("row-distancia").classList.remove('hidden');
    
   }
 
@@ -307,12 +312,14 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
 
   }
 
+
   limpaArea();
   trianguloD();
   trianguloC();
   trianguloR();
   trianguloI();
   criaPlanta();
+
 
 //CHECKBOX DETECÇÃO
   detecCheckbox.onchange = function() {
