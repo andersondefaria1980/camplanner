@@ -27,7 +27,7 @@ body{
  .titulo{
  	background-color: #e7e7e7;
  	border-top: 1px solid #8A8A8A;
-     border-bottom: 1px solid #8A8A8A;
+    border-bottom: 1px solid #8A8A8A;
  }
 
  .explicacao{
@@ -37,7 +37,7 @@ body{
  .footer{
  	margin-top: 30px;
  	margin-bottom: 10px;
- 	height: 70px;
+ 	height: 95px;
  }
  .textoexplicativo{
  	font-style: italic;

@@ -85,7 +85,8 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
     var varAngularFinalD = (catAdjA_ID*varAngularD)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "blue"
+    //ctx.fillStyle = "blue";
+    ctx.fillStyle = "#476F9E";
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -111,7 +112,8 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
     var varAngularFinalC = (catAdjA_C*varAngularC)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "lime"
+    //ctx.fillStyle = "lime";
+    ctx.fillStyle = "#3A8D31";
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -137,7 +139,8 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
     var varAngularFinalR = (catAdjA_R*varAngularR)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "yellow"
+    //ctx.fillStyle = "yellow";
+      ctx.fillStyle = "#D4D36E";
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -163,7 +166,8 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
     var varAngularFinal = (catAdjA_I*varAngular)/2;
 
     //TRIANGULO IDENTIFICAÇÃO
-    ctx.fillStyle = "red"
+//    ctx.fillStyle = "red";
+      ctx.fillStyle = "#D47C6E";
     ctx.beginPath();
     ctx.moveTo(x,y);
     //parte de baixo  (angulacao, tamanho) -- para deixar do mesmo tamanho o triangulo diminui 
@@ -270,7 +274,8 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
 
     ctx.clearRect(0, 0, 1000, 1000);
 
-    ctx.fillStyle = "lime"
+    //ctx.fillStyle = "lime";
+    ctx.fillStyle = "#3A8D31";
     ctx.beginPath();
     ctx.moveTo(x,y);
     ctx.translate(0,0);
@@ -292,7 +297,8 @@ function draw(largura=30, profundidade=30, distancia=0,resolucao=1920, lente=0.4
 
     ctx.clearRect(0, 0, 1000, 1000);
     
-    ctx.fillStyle = "lime"
+    //ctx.fillStyle = "lime";
+    ctx.fillStyle = "#3A8D31";
     ctx.beginPath();
     ctx.moveTo(x,y);
     ctx.translate(0,0);

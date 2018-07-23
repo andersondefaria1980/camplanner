@@ -17,7 +17,7 @@
 <div  class="titulo">
   <div class="container">
     <div class="form-group">
-        <div class="col-sm-4"> 
+        <div class="col-sm-4" style="width: 350px !important;">
             <img src="img/logo_fundo_claro3.png" alt="Smiley face" width="340" height="65">
         </div>
         <div class="col-sm-6">
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
         <span class="col-sm-5"style="float: center;">Descubra qual o projeto de câmeras ideal para seu estabelecimento.</span>
-        <span class="col-sm-3"style="float: right; font-style: italic;">Versão 1.5 Beta - 19/07/2018</span>    </div>   
+        <span class="col-sm-3"style="float: right; font-style: italic;">Versão 1.6 Beta - 23/07/2018</span>    </div>
   </div>
 </div>
 
